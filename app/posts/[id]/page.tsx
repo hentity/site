@@ -28,6 +28,8 @@ export default async function Post({ params }: Props) {
 
   return (
     <>
+    <article className="prose prose-lightgrey">
+
       {/* Post Title */}
       <h1>{postData.title}</h1>
 
@@ -37,8 +39,11 @@ export default async function Post({ params }: Props) {
 
       {/* Post Content */}
       <div
-        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />
+    </article>
     </>
+
+    
   )
 }
