@@ -34,9 +34,14 @@ const config = {
     },
     colors : {
       ...colors,
-      'darkgrey' : '#303030',
-      'medgrey' : '#676666',
-      'lightgrey' : '#e5e5e5',
+      'site-background': '#f1f1ee',
+      'cpale-yellow': '#fceec1',
+      'cdarker-yellow': '#c9a020',
+      'cred': '#cc8068',
+      'cblue': '#8cb5d0',
+      'clight-brown': '#ddcaa6',
+      'cgreen': '#b6d8b4',
+
     },
     fontFamily: {
       'mulish': ['Mulish', 'sans-serif']
