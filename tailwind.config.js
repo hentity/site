@@ -35,9 +35,12 @@ const config = {
     colors : {
       ...colors,
       'darkgrey' : '#303030',
-      'medgrey' : '#969696',
+      'medgrey' : '#676666',
       'lightgrey' : '#e5e5e5',
-    }
+    },
+    fontFamily: {
+      'mulish': ['Mulish', 'sans-serif']
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
