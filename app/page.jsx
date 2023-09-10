@@ -8,17 +8,33 @@ import { fetchSortedPostsData } from "@/lib/clientPosts";
 
 export default function Home() {
   const [allPostsData, setAllPostsData] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchSortedPostsData();
-      setAllPostsData(data);
+      const data = await fetchSortedPostsData(page);
+      if (Array.isArray(data)) {
+        setAllPostsData((prevData) => [...prevData, ...data]);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
-  const recentPosts = allPostsData.slice(0, 4);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight
+      ) {
+        return;
+      }
+      setPage((prevPage) => prevPage + 1); // Increase the page number to fetch the next set of posts
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function getColourFromCategory(category) {
     switch (category) {
@@ -35,9 +51,29 @@ export default function Home() {
 
   return (
     <>
+      <div className="flex">
+        <div className="w-1/6 h-8 border-y-2 text-white text-center bg-blue-800">
+          Books
+        </div>
+        <div className="w-1/6 h-8 border-y-2 text-white text-center bg-red-800">
+          Film
+        </div>
+        <div className="w-1/6 h-8 border-y-2 text-white text-center  bg-green-800">
+          Scorpion Rearing
+        </div>
+        <div className="w-1/6 h-8 border-y-2 text-center text-white bg-black">
+          Film
+        </div>
+        <div className="w-1/6 h-8 border-y-2 text-center text-white bg-teal-800">
+          Film
+        </div>
+        <div className="w-1/6 h-8 border-y-2 text-center text-white bg-purple-800">
+          Film
+        </div>
+      </div>
       <div className="flex justify-center">
         <div className="m-2 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center">
-          {recentPosts.map(
+          {allPostsData.map(
             ({ id, date, title, category, coverImage, description }) => (
               <Link
                 key={id}

@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(req) {
   try {
-    const data = await getSortedPostsData();
+    const page = Number(req.nextUrl.searchParams.get("page")) || 1;
+    const data = await getSortedPostsData(page);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Error fetching posts data:", error);
