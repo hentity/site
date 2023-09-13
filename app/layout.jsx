@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavBar from "components/navbar";
+import { CategoryColoursProvider } from "@/app/context/CategoryContext";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="">
-        <NavBar />
-        {children}
+        <CategoryColoursProvider>
+          <NavBar />
+          {children}
+        </CategoryColoursProvider>
       </body>
     </html>
   );

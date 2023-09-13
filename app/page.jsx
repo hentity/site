@@ -4,12 +4,14 @@ import Link from "next/link";
 import "@/app/globals.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { fetchSortedPostsData, fetchCategories } from "@/lib/clientPosts";
+import { fetchSortedPostsData } from "@/lib/clientPosts";
+import { useCategoryColours } from "./context/CategoryContext";
 
 export default function Home() {
   const [allPostsData, setAllPostsData] = useState([]);
   const [page, setPage] = useState(1);
-  const [categories, setCategories] = useState([]);
+
+  const categoryColours = useCategoryColours();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,14 +21,7 @@ export default function Home() {
       }
     };
 
-    const fetchCategoriesData = async () => {
-      const data = await fetchCategories();
-      setCategories(data);
-    };
-
     fetchData();
-    fetchCategoriesData();
-    console.log(categories);
   }, [page]);
 
   useEffect(() => {
@@ -37,34 +32,16 @@ export default function Home() {
       ) {
         return;
       }
-      setPage((prevPage) => prevPage + 1); // Increase the page number to fetch the next set of posts
+      setPage((prevPage) => prevPage + 1); // increase page number to fetch the next set of posts
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  function getColourFromCategory(categoryName) {
-    const category = categories.find((cat) => cat.name === categoryName);
-    console.log("CATEGORY: " + category);
-    return category ? `bg-${category.color}-800` : "bg-black";
-  }
-
   return (
     <>
       <div className="container mx-auto">
-        <div className="flex w-full mt-2">
-          <div className="flex w-full mt-2">
-            {categories.map((category, index) => (
-              <div
-                key={index}
-                className={`p-1 px-2 transition ease-in-out duration-500 flex-grow bg-${category.color}-200 hover:text-white text-center hover:bg-${category.color}-800`}
-              >
-                {category.name}
-              </div>
-            ))}
-          </div>
-        </div>
         <div className="flex justify-center py-4 ">
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center max-w-screen-xl mx-auto">
             {allPostsData.map(
@@ -73,7 +50,7 @@ export default function Home() {
                   key={id}
                   href={`/posts/${id}`}
                   className={
-                    "transition group duration-500 p-4 w-72 h-128 ease-in-out items-top justify-items-stretch hover:bg-zinc-200" // Removed m-4 here
+                    "transition group duration-500 p-4 w-72 h-128 ease-in-out items-top justify-items-stretch hover:bg-zinc-200"
                   }
                 >
                   <div className="">
@@ -81,8 +58,8 @@ export default function Home() {
                       className=" group"
                       src={coverImage}
                       alt={title}
-                      width={288} // Adjusted dimensions
-                      height={216} // Adjusted dimensions
+                      width={288}
+                      height={216}
                     />
                   </div>
                   <div className="flex flex-col justify-top">
@@ -104,9 +81,8 @@ export default function Home() {
                       <div className="flex w-1/3 justify-end">
                         <div
                           className={
-                            "px-2 font-mulish text-right justify-self-end text-site-background" +
-                            " " +
-                            getColourFromCategory(category)
+                            "px-2 font-mulish text-right justify-self-end text-site-background bg-" +
+                            categoryColours[category]
                           }
                         >
                           {category}
