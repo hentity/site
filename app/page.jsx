@@ -6,10 +6,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { fetchSortedPostsData } from "@/lib/clientPosts";
 import { useCategoryColours } from "./context/CategoryContext";
+import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 
-export default function Home({ selectedCategory }) {
+export default function Home() {
   const [allPostsData, setAllPostsData] = useState([]);
   const [page, setPage] = useState(1);
+  const { selectedCategory } = useSelectedCategory();
 
   const categoryColours = useCategoryColours();
 

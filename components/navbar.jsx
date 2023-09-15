@@ -4,10 +4,15 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCategoryColours } from "@/app/context/CategoryContext";
+import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
+import { usePathname } from "next/navigation";
 
-export default function Navbar({ selectedCategory, setSelectedCategory }) {
+export default function Navbar() {
   const categoryColours = useCategoryColours();
-  console.log("selectedCategory", selectedCategory);
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
+
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
     <>
@@ -29,10 +34,15 @@ export default function Navbar({ selectedCategory, setSelectedCategory }) {
         <div className="flex-grow flex justify-center space-x-4 items-center w-2/3">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
-              <div
-                onClick={() => setSelectedCategory(category)}
+              <Link
+                href={"/"}
+                onClick={() => {
+                  setSelectedCategory(category);
+                }}
                 className="group inline-block relative"
               >
+                {/* OTHER STYLING OPTIONS FOR CATEGORY LINKS */}
+
                 {/* <div
                   style={{ backgroundColor: categoryColours[category] }}
                   className="absolute inset-x-0 bottom-0 h-1 bg-black transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 origin-left"
@@ -42,8 +52,6 @@ export default function Navbar({ selectedCategory, setSelectedCategory }) {
                   className="absolute inset-x-0 top-0 h-1 bg-black transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 origin-right"
                 ></div> */}
 
-                {/* OTHER STYLING OPTIONS FOR CATEGORY LINKS */}
-
                 {/* <div
                   style={{ backgroundColor: categoryColours[category] }}
                   className="absolute inset-x-0 top-0 h-1 bg-black transition-all ease-in-out duration-300 opacity-0 group-hover:opacity-100"
@@ -52,21 +60,29 @@ export default function Navbar({ selectedCategory, setSelectedCategory }) {
                 {selectedCategory === category ? (
                   <div
                     style={{
-                      backgroundColor: categoryColours[category],
+                      background:
+                        selectedCategory === "All"
+                          ? "linear-gradient(to right, #0F4C5C, #E36414)"
+                          : categoryColours[category],
                     }}
-                    className="absolute inset-x-0 bottom-0 h-1 bg-black opacity-100"
+                    className="absolute inset-x-0 bottom-0 h-1 opacity-100"
                   ></div>
                 ) : (
                   <div
-                    style={{ backgroundColor: categoryColours[category] }}
-                    className="absolute inset-x-0 bottom-0 h-1 bg-black transition ease-in-out opacity-0 duration-200 group-hover:opacity-100"
+                    style={{
+                      background:
+                        category === "All"
+                          ? "linear-gradient(to right, #0F4C5C, #E36414)"
+                          : categoryColours[category],
+                    }}
+                    className="absolute inset-x-0 bottom-0 h-1 transition ease-in-out opacity-0 duration-200 group-hover:opacity-100"
                   ></div>
                 )}
 
                 <div className="cursor-pointer font-mulish lowercase text-xl py-1 text-black ">
                   {category}
                 </div>
-              </div>
+              </Link>
               {index < arr.length - 1 && <span className="text-xl">•</span>}
             </React.Fragment>
           ))}

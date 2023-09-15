@@ -3,6 +3,7 @@
 import "./globals.css";
 import NavBar from "components/navbar";
 import { CategoryColoursProvider } from "@/app/context/CategoryContext";
+import { SelectedCategoryProvider } from "@/app/context/SelectedCategoryContext";
 import { useState } from "react";
 import Home from "./page";
 
@@ -15,13 +16,12 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Description" />
       </head>
       <body className="">
-        <CategoryColoursProvider>
-          <NavBar
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
-          <Home selectedCategory={selectedCategory} />
-        </CategoryColoursProvider>
+        <SelectedCategoryProvider>
+          <CategoryColoursProvider>
+            <NavBar />
+            {children}
+          </CategoryColoursProvider>
+        </SelectedCategoryProvider>
       </body>
     </html>
   );
