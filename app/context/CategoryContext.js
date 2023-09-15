@@ -1,23 +1,20 @@
-"use client"
+"use client";
 
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
 
 // Create a context to store the category colours
 const CategoryColoursContext = createContext();
 
-export function CategoryColoursProvider({ children }) {
-  const [categoryColours, setCategoryColours] = useState({});
-  
-  useEffect(()=>{
-    setCategoryColours({
-        Tech: "red-700",
-        Books: "green-800",
-        History: "blue-800",
-        Media: "yellow-800",
-        Random: "black",
-      });
-}, [])
+const categoryColours = {
+  Tech: "#5F0F40", 
+  Books: "#9A031E",
+  History: "#E36414", 
+  Media: "#0F4C5C",
+  Fitness: "#0A590E", 
+  Random: "#000000",
+};
 
+export function CategoryColoursProvider({ children }) {
   return (
     <CategoryColoursContext.Provider value={categoryColours}>
       {children}

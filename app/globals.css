@@ -4,5 +4,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 
 body {
-    @apply bg-site-background; 
+    @apply bg-white; 
   }

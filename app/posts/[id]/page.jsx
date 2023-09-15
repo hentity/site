@@ -7,11 +7,11 @@ export default async function Post({ params }) {
 
   return (
     <div className="container mx-auto px-4 md:px-0">
-      <article className="prose prose-lightgrey mx-auto mt-10 mb-20">
+      <article className="prose prose-lg mx-auto mt-10 mb-20">
         {/* Post Title */}
         <h1 className="mb-4">{postData.title}</h1>
 
-        <div className="mb-8 text-gray-600">{postData.date}</div>
+        <div className="mb-8 font-mulish text-gray-600">{postData.date}</div>
 
         {/* Post Content */}
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />

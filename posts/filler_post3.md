@@ -1,8 +1,8 @@
 ---
 title: "Other Post"
-category: "Media"
+category: "Books"
 date: "2019-01-01"
-coverImage: "/img/test.jpg"
+coverImage: "/img/test6.jpg"
 description: "A brief description of the post, to be displayed when it is previewed. Shouldn't be more than a couple of sentences."
 ---
 

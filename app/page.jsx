@@ -55,7 +55,7 @@ export default function Home() {
                 >
                   <div className="">
                     <Image
-                      className=" group"
+                      className="object-cover aspect-[4/3]"
                       src={coverImage}
                       alt={title}
                       width={288}
@@ -74,16 +74,16 @@ export default function Home() {
                     </p>
                     <div className="flex">
                       <div className="w-2/3 text-lg font-bold text-black ">
-                        <div className="relative font-mulish font-bold text-xl font-mulish w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:group-hover:scale-x-100 after:transition after:duration-300 after:origin-left">
+                        <div className="relative font-mulish font-bold text-xl w-fit">
                           {title}
                         </div>
                       </div>
                       <div className="flex w-1/3 justify-end">
                         <div
-                          className={
-                            "px-2 font-mulish text-right justify-self-end text-site-background bg-" +
-                            categoryColours[category]
-                          }
+                          style={{
+                            backgroundColor: categoryColours[category],
+                          }}
+                          className="px-2 font-mulish text-right justify-self-end text-white"
                         >
                           {category}
                         </div>
