@@ -7,22 +7,27 @@ import { useState, useEffect } from "react";
 import { fetchSortedPostsData } from "@/lib/clientPosts";
 import { useCategoryColours } from "./context/CategoryContext";
 
-export default function Home() {
+export default function Home({ selectedCategory }) {
   const [allPostsData, setAllPostsData] = useState([]);
   const [page, setPage] = useState(1);
 
   const categoryColours = useCategoryColours();
 
   useEffect(() => {
+    setAllPostsData([]);
+    setPage(1);
+  }, [selectedCategory]);
+
+  useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchSortedPostsData(page);
+      const data = await fetchSortedPostsData(page, selectedCategory);
       if (Array.isArray(data)) {
         setAllPostsData((prevData) => [...prevData, ...data]);
       }
     };
 
     fetchData();
-  }, [page]);
+  }, [page, selectedCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +79,7 @@ export default function Home() {
                     </p>
                     <div className="flex">
                       <div className="w-2/3 text-lg font-bold text-black ">
-                        <div className="relative font-mulish font-bold text-xl w-fit">
+                        <div className="relative font-mulish font-bold text-xl font-mulish w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:group-hover:scale-x-100 after:transition after:duration-300 after:origin-left">
                           {title}
                         </div>
                       </div>

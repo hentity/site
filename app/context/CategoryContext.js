@@ -6,6 +6,7 @@ import React, { createContext, useContext } from 'react';
 const CategoryColoursContext = createContext();
 
 const categoryColours = {
+  All: "#000000",
   Tech: "#5F0F40", 
   Books: "#9A031E",
   History: "#E36414", 
