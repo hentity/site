@@ -17,8 +17,8 @@ export default function About() {
   return (
     <>
       <div className="flex h-screen">
-        <div className="grid grid-cols-1 p-4 h-5/6 content-center w-1/2 justify-items-end abg-blue-100">
-          <div className="">
+        <div className="hidden lg:grid lg:grid-cols-1 lg:p-4 lg:h-5/6 lg:content-center lg:w-1/2 lg:justify-items-end">
+          <div>
             <Image
               className=""
               alt="Portrait of the blogger as a young man"
@@ -27,29 +27,29 @@ export default function About() {
               height={360}
             />
             <div className="p-4">
-              <div className="font-mulish font-light text-center">
+              <div className="font-sans font-light text-center">
                 A portrait of the blogger as a young man
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center p-4 pr-20 h-5/6 max-w-[50%] abg-green-100">
-          <div className="font-mulish font-bold text-4xl mb-4">
+        <div className="flex flex-col p-4 lg:pr-20 h-5/6 lg:max-w-[50%] abg-green-100">
+          <div className="font-sans font-bold text-4xl mb-4">
             What is this place?
           </div>
-          <div className="font-mulish">
-            Henlighted is a sporadically-updated, questionably-populated and
+          <div className="font-sans">
+            Henlighted is a sporadically-updated, questionably educational and
             entirely improvised trainwreck of a blog that I put together in late
-            2023 as a procrastination project.
+            2023 for lack of anything better to do.
           </div>
-          <div className="mt-4 font-mulish font-bold text-4xl mb-4">
+          <div className="mt-4 font-sans font-bold text-4xl mb-4">
             Why is it here?
           </div>
-          <div className="font-mulish">
+          <div className="font-sans">
             I created henlightened with two goals in mind:
           </div>
-          <ul class="font-mulish list-outside list-disc list-decimal ml-12 mt-2">
+          <ul className="font-sans list-outside list-disc list-decimal ml-8 mt-2">
             <li className="pl-2 pb-2">
               <b>Learning to blog:</b> Like many of us, I spend inordinate
               amounts of time consuming media. So I thought, why not spend a
@@ -61,10 +61,10 @@ export default function About() {
               teach.
             </li>
           </ul>
-          <div className="font-mulish">
+          <div className="font-sans">
             Oh and also for fame, glory and internet immortalisation.
           </div>
-          <div className="mt-4 font-mulish font-bold text-4xl mb-4 flex items-center">
+          <div className="hidden lg:mt-4 lg:font-sans lg:font-bold lg:text-4xl lg:mb-4 lg:flex lg:items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -76,7 +76,10 @@ export default function About() {
             </svg>
             <span>Who's this poser?</span>
           </div>
-          <div className="font-mulish">
+          <div className="lg:hidden mt-4 font-sans font-bold text-4xl mb-4 flex items-center">
+            <span>Who's talking?</span>
+          </div>
+          <div className="font-sans">
             I'm Henry, a 21-year old human making my clumsy way through a
             software engineering degree in Melbourne, Australia. If by some
             miracle you are not my mum or close friend and would like to chat,
@@ -96,6 +99,20 @@ export default function About() {
               )}
             </div>
             . I'm mostly harmless :)
+          </div>
+          <div className="flex flex-col pt-4 lg:hidden items-center">
+            <Image
+              className=""
+              alt="Portrait of the blogger as a young man"
+              src="/img/archflick2.jpg"
+              width={540}
+              height={360}
+            />
+            <div className="p-4">
+              <div className="font-sans font-light text-center">
+                A portrait of the blogger as a young man
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,21 +5,29 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCategoryColours } from "@/app/context/CategoryContext";
 import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navbar() {
   const categoryColours = useCategoryColours();
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <>
-      <nav className="flex px-4 items-center relative ">
-        <div className="text-xl font-bold md:py-0 py-4 w-1/6">
+      <nav className="flex px-4 items-center relative">
+        <div className="text-xl font-bold  py-2 w-1/6">
           <Link
             onClick={() => setSelectedCategory("All")}
             href="/"
             className="flex items-center group"
           >
-            <div className="font-mulish lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] group-hover:text-transparent">
+            <div className="font-sans lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] group-hover:text-transparent group-focus:text-transparent">
               Henlightened
             </div>
             <Image
@@ -31,7 +39,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex-grow flex justify-center space-x-4 items-center w-2/3">
+        <div className="hidden md:flex md:justify-center md:space-x-4 md:items-center md:w-3/4 ">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
@@ -57,7 +65,7 @@ export default function Navbar() {
                   className="absolute inset-x-0 top-0 h-1 bg-black transition-all ease-in-out duration-300 opacity-0 group-hover:opacity-100"
                 ></div> */}
 
-                {selectedCategory === category ? (
+                {selectedCategory === category && pathname === "/" ? (
                   <div
                     style={{
                       background:
@@ -79,24 +87,69 @@ export default function Navbar() {
                   ></div>
                 )}
 
-                <div className="cursor-pointer font-mulish lowercase text-xl py-1 text-black ">
+                <div className="cursor-pointer font-sans lowercase text-xl py-1 text-black ">
                   {category}
                 </div>
               </Link>
-              {index < arr.length - 1 && <span className="text-xl">•</span>}
+              {index < arr.length - 1 && (
+                <span className="font-sans text-sm">•</span>
+              )}
             </React.Fragment>
           ))}
         </div>
 
-        <div className="flex w-1/6 justify-end">
+        <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 md:justify-end md:justify-end">
           <Link
             href="/about"
-            className="text-xl font-bold font-mulish lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] hover:text-transparent"
+            className="text-xl font-bold font-sans lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] hover:text-transparent"
           >
             About
           </Link>
         </div>
+
+        <div className="md:hidden flex absolute right-4 w-1/12 justify-end">
+          <button onClick={toggleMenu} className="text-xl font-bold">
+            ☰
+          </button>
+        </div>
       </nav>
+      {isMenuOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col space-y-6 p-8">
+          <button
+            onClick={toggleMenu}
+            className="self-end font-sans text-black text-3xl"
+          >
+            &times;
+          </button>
+          <div className="flex flex-col items-start space-y-4">
+            {Object.keys(categoryColours).map((category) => (
+              <Link
+                key={category}
+                href="/"
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setIsMenuOpen(false);
+                }}
+                className="flex w-full p-1 items-center lowercase space-x-2 text-black font-sans text-2xl focus:bg-zinc-200"
+              >
+                <div
+                  style={{ backgroundColor: categoryColours[category] }}
+                  className="w-1 h-full mr-1"
+                ></div>
+                {category}
+              </Link>
+            ))}
+          </div>
+          <hr className="w-full border-t border-gray-300" />
+          <Link
+            href="/about"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-black p-1 lowercase w-full font-sans text-2xl focus:bg-zinc-200"
+          >
+            About
+          </Link>
+        </div>
+      )}
     </>
   );
 }

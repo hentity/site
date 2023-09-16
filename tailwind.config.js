@@ -28,7 +28,7 @@ const config = {
       ...colors,
     },
     fontFamily: {
-      'mulish': ['Mulish', 'sans-serif']
+      sans: ['var(--font-mulish)'],
     },
   },
   plugins: [
