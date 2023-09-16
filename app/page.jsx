@@ -11,7 +11,7 @@ import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 export default function Home() {
   const [allPostsData, setAllPostsData] = useState([]);
   const [page, setPage] = useState(1);
-  const { selectedCategory } = useSelectedCategory();
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
   const categoryColours = useCategoryColours();
 

@@ -5,20 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCategoryColours } from "@/app/context/CategoryContext";
 import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const categoryColours = useCategoryColours();
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-
   return (
     <>
       <nav className="flex px-4 items-center relative ">
         <div className="text-xl font-bold md:py-0 py-4 w-1/6">
-          <Link href="/" className="flex items-center group">
+          <Link
+            onClick={() => setSelectedCategory("All")}
+            href="/"
+            className="flex items-center group"
+          >
             <div className="font-mulish lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] group-hover:text-transparent">
               Henlightened
             </div>
