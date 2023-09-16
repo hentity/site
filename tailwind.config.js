@@ -18,7 +18,9 @@ const config = {
               'code::after': {
                 content: 'none'
               },
-              'fontFamily': 'Mulish',
+              fontFamily: {
+                sans: ['var(--font-mulish)'],
+              },
             }
           }
         }

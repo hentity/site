@@ -98,7 +98,7 @@ export default function About() {
                 </div>
               )}
             </div>
-            . I'm mostly harmless :)
+            {". I'm mostly harmless :)"}
           </div>
           <div className="flex flex-col pt-4 lg:hidden items-center">
             <Image

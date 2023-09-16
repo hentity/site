@@ -11,7 +11,7 @@ export default async function Post({ params }) {
         {/* Post Title */}
         <h1 className="mb-4">{postData.title}</h1>
 
-        <div className="mb-8 font-mulish text-gray-600">{postData.date}</div>
+        <div className="mb-8 font-sans text-gray-600">{postData.date}</div>
 
         {/* Post Content */}
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
