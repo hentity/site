@@ -1,6 +1,6 @@
 ---
 title: "Other Post"
-category: "Media"
+category: "Music"
 date: "2019-01-01"
 coverImage: "/img/test4.jpeg"
 description: "A brief description of the post, to be displayed when it is previewed. Shouldn't be more than a couple of sentences."

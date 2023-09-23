@@ -51,7 +51,7 @@ export default function Home() {
       <div className="container mx-auto">
         <div className="flex justify-center">
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center max-w-screen-xl mx-auto">
-            {allPostsData.length == 0 ? (
+            {allPostsData.length == 0 && selectedCategory != "All" ? (
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl text-black">
                 Nothing to see here...yet.
               </div>
