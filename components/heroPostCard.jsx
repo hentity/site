@@ -23,9 +23,9 @@ export default function HeroPostCard({
       <Link
         key={id}
         href={`/posts/${id}`}
-        className="transition p-2 flex max-md:flex-col group duration-300 h-full ease-in-out bg-postBackground rounded-custom border border-2 border-postBackground hover:border-shadows hover:bg-fpostBackgroundHover hover:shadow-xl hover:shadow-shadows hover:-translate-y-1.5"
+        className="transition p-2 flex max-lg:flex-col group duration-300 h-full ease-in-out bg-postBackground rounded-custom border border-2 border-postBackground hover:border-shadows hover:bg-fpostBackgroundHover hover:shadow-xl hover:shadow-shadows hover:-translate-y-1.5"
       >
-        <div className="w-full md:w-5/12 p-2">
+        <div className="w-full lg:w-1/2 p-2">
           <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
             <Image
               className="object-cover rounded-custom absolute inset-0 w-full h-full"
@@ -37,7 +37,7 @@ export default function HeroPostCard({
           </div>
         </div>
 
-        <div className="flex flex-col w-full md:w-7/12 lg:w-1/2 px-6 py-4 h-fill">
+        <div className="flex flex-col w-full lg:w-1/2 px-6 pt-4 h-fill">
           <div className="flex">
             <div className="relative text-textPrimary font-sans font-bold text-2xl lg:text-4xl w-fit ">
               {title}

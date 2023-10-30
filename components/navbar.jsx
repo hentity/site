@@ -36,7 +36,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:flex md:justify-center md:space-x-4 md:items-center md:w-3/4">
+        <div className="hidden md:flex md:justify-center md:space-x-2 lg:space-x-4 md:items-center md:w-3/4">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
