@@ -4,5 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 
 body {
-    @apply bg-white; 
+    @apply bg-background; 
   }
+
+/* cool green - #508264 */

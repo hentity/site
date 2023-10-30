@@ -7,6 +7,7 @@ import { useCategoryColours } from "@/app/context/CategoryContext";
 import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Logo from "@/components/logo";
 
 export default function Navbar() {
   const categoryColours = useCategoryColours();
@@ -20,22 +21,17 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex px-4 items-center relative">
-        <div className="text-xl font-bold  py-2 w-1/6">
+      <nav className="flex px-4 items-center relative bg-navBackground">
+        <div className="text-xl font-bold py-2 w-1/6">
           <Link
             onClick={() => setSelectedCategory("All")}
             href="/"
-            className="flex items-center group"
+            className="flex items-center group w-fit"
           >
-            <div className="font-sans lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] group-hover:text-transparent group-focus:text-transparent">
+            <div className="font-sans lowercase transition ease-in-out text-textPrimary">
               Henlightened
             </div>
-            <Image
-              src="/img/henlightened.png"
-              width={50}
-              height={50}
-              alt="Henlightened Logo"
-            />
+            <Logo className="bg-textPrimary" />
           </Link>
         </div>
 
@@ -69,11 +65,9 @@ export default function Navbar() {
                   <div
                     style={{
                       background:
-                        selectedCategory === "All"
-                          ? "linear-gradient(to right, #0F4C5C, #E36414)"
-                          : categoryColours[category],
+                        selectedCategory != "All" && categoryColours[category],
                     }}
-                    className="absolute inset-x-0 bottom-0 h-1 opacity-100"
+                    className="absolute inset-x-0 bottom-0 h-1 opacity-100 bg-gradient-to-r from-gradientStart to-gradientEnd"
                   ></div>
                 ) : (
                   <div
@@ -87,21 +81,23 @@ export default function Navbar() {
                   ></div>
                 )}
 
-                <div className="cursor-pointer font-sans lowercase text-xl py-1 text-black ">
+                <div className="cursor-pointer font-sans lowercase text-xl py-1 text-textPrimary">
                   {category}
                 </div>
               </Link>
               {index < arr.length - 1 && (
-                <span className="font-sans text-sm">•</span>
+                <span className="font-sans text-textPrimary text-sm cursor-default">
+                  •
+                </span>
               )}
             </React.Fragment>
           ))}
         </div>
 
-        <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 md:justify-end md:justify-end">
+        <div className="hidden md:flex md:absolute md:right-4 md:w-1/6 md:justify-end md:justify-end">
           <Link
             href="/about"
-            className="text-xl font-bold font-sans lowercase transition ease-in-out bg-black bg-clip-text duration-300 bg-gradient-to-r from-[#0F4C5C] to-[#E36414] hover:text-transparent"
+            className="font-sans text-xl font-bold lowercase text-textPrimary transition ease-in-out duration-300"
           >
             About
           </Link>
@@ -114,11 +110,8 @@ export default function Navbar() {
         </div>
       </nav>
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col space-y-6 p-8">
-          <button
-            onClick={toggleMenu}
-            className="self-end font-sans text-black text-3xl"
-          >
+        <div className="fixed top-0 left-0 w-full h-full bg-background z-50 flex flex-col space-y-6 p-8">
+          <button onClick={toggleMenu} className="self-end font-sans text-3xl">
             &times;
           </button>
           <div className="flex flex-col items-start space-y-4">
@@ -130,7 +123,7 @@ export default function Navbar() {
                   setSelectedCategory(category);
                   setIsMenuOpen(false);
                 }}
-                className="flex w-full p-1 items-center lowercase space-x-2 text-black font-sans text-2xl focus:bg-zinc-200"
+                className="flex w-full p-1 items-center lowercase space-x-2 font-sans text-2xl focus:bg-postBackgroundHover"
               >
                 <div
                   style={{ backgroundColor: categoryColours[category] }}
@@ -140,11 +133,10 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <hr className="w-full border-t border-gray-300" />
           <Link
             href="/about"
             onClick={() => setIsMenuOpen(false)}
-            className="text-black p-1 lowercase w-full font-sans text-2xl focus:bg-zinc-200"
+            className="p-1 pt-4 border-t-2 lowercase w-full font-sans text-2xl focus:bg-postBackgroundHover"
           >
             About
           </Link>

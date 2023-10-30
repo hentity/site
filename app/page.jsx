@@ -50,9 +50,9 @@ export default function Home() {
     <>
       <div className="container mx-auto">
         <div className="flex justify-center">
-          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center max-w-screen-xl mx-auto">
+          <div className="bg-boardBackground rounded-custom grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center max-w-screen-xl mx-auto">
             {allPostsData.length == 0 && selectedCategory != "All" ? (
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl text-black">
+              <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl">
                 Nothing to see here...yet.
               </div>
             ) : (
@@ -62,12 +62,12 @@ export default function Home() {
                     key={id}
                     href={`/posts/${id}`}
                     className={
-                      "transition group duration-500 p-4 w-72 h-128 ease-in-out items-top justify-items-stretch hover:bg-zinc-200 focus:bg-zinc-200"
+                      "transition group duration-500 p-4 w-72 h-128 ease-in-out items-top justify-items-stretch rounded-custom bg-postBackground bg-black hover:bg-postBackgroundHover focus:bg-postBackgroundHover"
                     }
                   >
                     <div className="">
                       <Image
-                        className="object-cover aspect-[4/3]"
+                        className="object-cover aspect-[4/3] rounded-custom"
                         src={coverImage}
                         alt={title}
                         width={288}
@@ -75,7 +75,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="flex flex-col justify-top">
-                      <p className=" text-medgrey text-md font-light font-sans">
+                      <p className="text-textMuted text-md font-semibold font-light font-sans">
                         {new Date(date)
                           .toLocaleDateString(undefined, {
                             year: "numeric",
@@ -85,8 +85,8 @@ export default function Home() {
                           .replace(/\//g, ".")}
                       </p>
                       <div className="flex">
-                        <div className="w-2/3 text-lg font-bold text-black ">
-                          <div className="relative font-sans font-bold text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:group-hover:scale-x-100 after:transition after:duration-300 after:origin-left">
+                        <div className="w-2/3">
+                          <div className="relative text-textPrimary font-sans font-bold text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-textPrimary after:w-full after:scale-x-0 after:group-hover:scale-x-100 after:transition after:duration-300 after:origin-left">
                             {title}
                           </div>
                         </div>
@@ -95,13 +95,13 @@ export default function Home() {
                             style={{
                               backgroundColor: categoryColours[category],
                             }}
-                            className="px-2 font-sans text-right justify-self-end text-white"
+                            className="px-2 rounded-custom py-0.5 font-sans text-right justify-self-end font-semibold text-textCategoryLabel"
                           >
                             {category}
                           </div>
                         </div>
                       </div>
-                      <p className="text-lg font-sans text-grey mt-2">
+                      <p className="text-lg font-sans text-textMuted mt-2">
                         {description}
                       </p>
                     </div>
