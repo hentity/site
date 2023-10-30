@@ -50,9 +50,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="px-8">
+      <div className="px-2 md:px-8">
         {allPostsData.length > 0 && (
-          <div className="max-w-screen-2xl mx-auto p-4 pt-0 border-b border-b-borders">
+          <div className="max-w-screen-2xl mx-auto p-4 pt-0 lg:border-b lg:border-b-borders">
             <HeroPostCard {...allPostsData[0]} />
           </div>
         )}
@@ -67,7 +67,7 @@ export default function Home() {
                 .slice(1)
                 .map(
                   ({ id, date, title, category, coverImage, description }) => (
-                    <div key={id} className="w-1/2 p-4">
+                    <div key={id} className="w-full lg:w-1/2 p-4">
                       <PostCard
                         id={id}
                         date={date}

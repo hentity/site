@@ -24,19 +24,21 @@ export default function PostCard({
         key={id}
         href={`/posts/${id}`}
         className={
-          "transition flex group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-postBackground hover:border-shadows hover:shadow-xl hover:shadow-shadows hover:-translate-y-1.5 hover:fscale-[103%]"
+          "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-postBackground hover:border-shadows hover:shadow-xl hover:shadow-shadows hover:-translate-y-1.5 hover:fscale-[103%]"
         }
       >
-        <div className="w-5/12 p-2">
-          <Image
-            className="object-cover aspect-[3/2] rounded-custom "
-            src={coverImage}
-            alt={title}
-            width={288}
-            height={216}
-          />
+        <div className="w-full md:w-5/12 p-2">
+          <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
+            <Image
+              className="object-cover rounded-custom absolute inset-0 w-full h-full"
+              src={coverImage}
+              alt={title}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
-        <div className="flex flex-col justify-top w-7/12 p-2 h-full">
+        <div className="w-full flex flex-col justify-top md:w-7/12 p-2">
           <div className="flex">
             <div className="relative text-textPrimary font-sans font-bold text-2xl w-fit">
               {title}
@@ -44,19 +46,19 @@ export default function PostCard({
           </div>
           <div className="text-textMuted text-md font-semibold font-light font-sans ">
             {new Date(date)
-              .toLocaleDateString(undefined, {
+              .toLocaleDateString("default", {
+                day: "numeric",
+                month: "long",
                 year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
               })
-              .replace(/\//g, ".")}
+              .replace(/\//g, " ")}
           </div>
-          <div className="flex h-fit">
+          <div className="flex h-full py-1">
             <div
               style={{
                 backgroundColor: categoryColours[category],
               }}
-              className="px-2 rounded-custom py-0.5 font-sans font-semibold text-textCategoryLabel"
+              className="h-fit px-2 rounded-custom py-0.5 font-sans font-semibold text-textCategoryLabel"
             >
               {category}
             </div>

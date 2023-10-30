@@ -82,7 +82,7 @@ export default function Navbar() {
                   ></div>
                 )}
 
-                <div className="cursor-pointer font-sans text-xl py-1 text-textPrimary transition duration-300 group-hover:-translate-y-0.5">
+                <div className="cursor-pointer font-sans text-xl py-1 text-textPrimary transition duration-200 group-hover:-translate-y-0.5">
                   {category}
                 </div>
               </Link>
@@ -124,7 +124,7 @@ export default function Navbar() {
                   setSelectedCategory(category);
                   setIsMenuOpen(false);
                 }}
-                className="flex w-full p-1 items-center space-x-2 font-sans text-2xl focus:bg-postBackgroundHover"
+                className="flex w-full p-1 items-center space-x-2 font-sans font-semibold text-2xl focus:bg-postBackgroundHover"
               >
                 <div
                   style={{ backgroundColor: categoryColours[category] }}
@@ -137,7 +137,7 @@ export default function Navbar() {
           <Link
             href="/about"
             onClick={() => setIsMenuOpen(false)}
-            className="p-1 pt-4 border-t-2 lowercase w-full font-sans text-2xl focus:bg-postBackgroundHover"
+            className="p-1 pt-4 border-t-2 font-semibold w-full font-sans text-2xl focus:bg-postBackgroundHover"
           >
             About
           </Link>
