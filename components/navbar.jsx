@@ -32,7 +32,7 @@ export default function Navbar() {
             <div className="relative font-sans transition ease-in-out text-textPrimary">
               <div className="transition duration-300">Henlightened</div>
             </div>
-            <Logo className="group-hover:animate-bounce bg-textPrimary" />
+            <Logo className="bg-textPrimary" />
           </Link>
         </div>
 
@@ -105,7 +105,7 @@ export default function Navbar() {
         </div>
 
         <div className="md:hidden flex absolute right-4 w-1/12 justify-end">
-          <button onClick={toggleMenu} className="text-xl font-bold">
+          <button onClick={toggleMenu} className="text-3xl font-bold">
             ☰
           </button>
         </div>

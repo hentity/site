@@ -24,7 +24,7 @@ export default function PostCard({
         key={id}
         href={`/posts/${id}`}
         className={
-          "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-postBackground hover:border-shadows hover:shadow-xl hover:shadow-shadows hover:-translate-y-1.5 hover:fscale-[103%]"
+          "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-shadows shadow-xl shadow-shadows focus:shadow-none focus:translate-y-1.5 focus:border-postBackground lg:border-2 lg:border-postBackground lg:shadow-none lg:hover:border-shadows lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5"
         }
       >
         <div className="w-full md:w-5/12 p-2">

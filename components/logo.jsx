@@ -3,7 +3,7 @@ import React from "react";
 const Logo = () => {
   return (
     // Paste the contents of the SVG here, for example:
-    <div className="group-hover:animate-spin">
+    <div className="group-focus:animate-spin">
       <svg
         width="50"
         height="50"

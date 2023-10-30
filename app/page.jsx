@@ -52,7 +52,7 @@ export default function Home() {
     <>
       <div className="px-4 md:px-8">
         {allPostsData.length > 0 && (
-          <div className="max-w-screen-2xl mx-auto p-4 pt-0 md:border-b md:border-b-borders">
+          <div className="max-w-screen-2xl mx-auto p-4 pt-0 lg:border-b lg:border-b-borders">
             <HeroPostCard {...allPostsData[0]} />
           </div>
         )}
