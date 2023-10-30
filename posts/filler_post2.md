@@ -1,5 +1,5 @@
 ---
-title: "Other Post"
+title: "How I Built This Website: Markdown Blogging with NextJS"
 category: "Fitness"
 date: "2019-01-01"
 coverImage: "/img/test5.jpg"

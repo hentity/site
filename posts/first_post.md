@@ -1,5 +1,5 @@
 ---
-title: "My First Post"
+title: "Decoding the Human Genome: What Our DNA Tells Us About Ourselves"
 category: "Tech"
 date: "2020-01-01"
 coverImage: "/img/test.jpg"

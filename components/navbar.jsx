@@ -21,21 +21,22 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex px-4 items-center relative bg-navBackground">
+      <nav className="flex px-4 items-center relative bg-navBackground ">
+        {/* border-b border-b-borders border-b-1 */}
         <div className="text-xl font-bold py-2 w-1/6">
           <Link
             onClick={() => setSelectedCategory("All")}
             href="/"
             className="flex items-center group w-fit"
           >
-            <div className="font-sans lowercase transition ease-in-out text-textPrimary">
-              Henlightened
+            <div className="relative font-sans transition ease-in-out text-textPrimary">
+              <div className="transition duration-300">Henlightened</div>
             </div>
-            <Logo className="bg-textPrimary" />
+            <Logo className="group-hover:animate-bounce bg-textPrimary" />
           </Link>
         </div>
 
-        <div className="hidden md:flex md:justify-center md:space-x-4 md:items-center md:w-3/4 ">
+        <div className="hidden md:flex md:justify-center md:space-x-4 md:items-center md:w-3/4">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
@@ -67,21 +68,21 @@ export default function Navbar() {
                       background:
                         selectedCategory != "All" && categoryColours[category],
                     }}
-                    className="absolute inset-x-0 bottom-0 h-1 opacity-100 bg-gradient-to-r from-gradientStart to-gradientEnd"
+                    className="absolute inset-x-0 bottom-0 h-1 opacity-100 bg-shadows"
                   ></div>
                 ) : (
                   <div
                     style={{
                       background:
                         category === "All"
-                          ? "linear-gradient(to right, #0F4C5C, #E36414)"
+                          ? "#000000"
                           : categoryColours[category],
                     }}
                     className="absolute inset-x-0 bottom-0 h-1 transition ease-in-out opacity-0 duration-200 group-hover:opacity-100"
                   ></div>
                 )}
 
-                <div className="cursor-pointer font-sans lowercase text-xl py-1 text-textPrimary">
+                <div className="cursor-pointer font-sans text-xl py-1 text-textPrimary transition duration-300 group-hover:-translate-y-0.5">
                   {category}
                 </div>
               </Link>
@@ -97,7 +98,7 @@ export default function Navbar() {
         <div className="hidden md:flex md:absolute md:right-4 md:w-1/6 md:justify-end md:justify-end">
           <Link
             href="/about"
-            className="font-sans text-xl font-bold lowercase text-textPrimary transition ease-in-out duration-300"
+            className="font-sans text-xl font-bold text-textPrimary transition ease-in-out duration-300"
           >
             About
           </Link>
@@ -123,7 +124,7 @@ export default function Navbar() {
                   setSelectedCategory(category);
                   setIsMenuOpen(false);
                 }}
-                className="flex w-full p-1 items-center lowercase space-x-2 font-sans text-2xl focus:bg-postBackgroundHover"
+                className="flex w-full p-1 items-center space-x-2 font-sans text-2xl focus:bg-postBackgroundHover"
               >
                 <div
                   style={{ backgroundColor: categoryColours[category] }}

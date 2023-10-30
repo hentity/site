@@ -61,7 +61,7 @@ export default function About() {
               teach.
             </li>
           </ul>
-          <div className="font-sans">
+          <div className="font-sans text-textMuted">
             Oh and also for fame, glory and internet immortalisation.
           </div>
           <div className="hidden lg:mt-4 lg:font-sans lg:font-bold lg:text-4xl lg:mb-4 lg:flex lg:items-center">
@@ -75,7 +75,9 @@ export default function About() {
             >
               <path d="M17 7V5H5v12h2V8.414l10.293 10.293 1.414-1.414L8.414 7H17z" />
             </svg>*/}
-            <span>{"← Who's this poser?"}</span>
+            <div className="mt-4 font-sans font-bold text-4xl mb-4 text-textPrimary">
+              {"← Who's this poser?"}
+            </div>
           </div>
           <div className="lg:hidden mt-4 font-sans font-bold text-4xl mb-4 flex items-center text-textPrimary">
             <span>Who's talking?</span>

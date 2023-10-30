@@ -1,5 +1,5 @@
 ---
-title: "My Second Post"
+title: "The Wonders of the Solar System: A Journey Through Space"
 category: "Fitness"
 date: "2022-01-01"
 coverImage: "/img/test1.jpeg"

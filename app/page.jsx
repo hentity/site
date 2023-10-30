@@ -3,6 +3,8 @@
 import Link from "next/link";
 import "@/app/globals.css";
 import Image from "next/image";
+import PostCard from "components/postCard";
+import HeroPostCard from "components/heroPostCard";
 import { useState, useEffect } from "react";
 import { fetchSortedPostsData } from "@/lib/clientPosts";
 import { useCategoryColours } from "./context/CategoryContext";
@@ -48,66 +50,35 @@ export default function Home() {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="flex justify-center">
-          <div className="bg-boardBackground rounded-custom grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center max-w-screen-xl mx-auto">
+      <div className="px-8">
+        {allPostsData.length > 0 && (
+          <div className="max-w-screen-2xl mx-auto p-4 pt-0 border-b border-b-borders">
+            <HeroPostCard {...allPostsData[0]} />
+          </div>
+        )}
+        <div className="mx-auto p-2 max-w-screen-2xl bg-boardBackground rounded-custom">
+          <div className="w-full flex flex-wrap">
             {allPostsData.length == 0 && selectedCategory != "All" ? (
               <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl">
                 Nothing to see here...yet.
               </div>
             ) : (
-              allPostsData.map(
-                ({ id, date, title, category, coverImage, description }) => (
-                  <Link
-                    key={id}
-                    href={`/posts/${id}`}
-                    className={
-                      "transition group duration-500 p-4 w-72 h-128 ease-in-out items-top justify-items-stretch rounded-custom bg-postBackground bg-black hover:bg-postBackgroundHover focus:bg-postBackgroundHover"
-                    }
-                  >
-                    <div className="">
-                      <Image
-                        className="object-cover aspect-[4/3] rounded-custom"
-                        src={coverImage}
-                        alt={title}
-                        width={288}
-                        height={216}
+              allPostsData
+                .slice(1)
+                .map(
+                  ({ id, date, title, category, coverImage, description }) => (
+                    <div key={id} className="w-1/2 p-4">
+                      <PostCard
+                        id={id}
+                        date={date}
+                        category={category}
+                        title={title}
+                        coverImage={coverImage}
+                        description={description}
                       />
                     </div>
-                    <div className="flex flex-col justify-top">
-                      <p className="text-textMuted text-md font-semibold font-light font-sans">
-                        {new Date(date)
-                          .toLocaleDateString(undefined, {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                          })
-                          .replace(/\//g, ".")}
-                      </p>
-                      <div className="flex">
-                        <div className="w-2/3">
-                          <div className="relative text-textPrimary font-sans font-bold text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-textPrimary after:w-full after:scale-x-0 after:group-hover:scale-x-100 after:transition after:duration-300 after:origin-left">
-                            {title}
-                          </div>
-                        </div>
-                        <div className="flex w-1/3 justify-end">
-                          <div
-                            style={{
-                              backgroundColor: categoryColours[category],
-                            }}
-                            className="px-2 rounded-custom py-0.5 font-sans text-right justify-self-end font-semibold text-textCategoryLabel"
-                          >
-                            {category}
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-lg font-sans text-textMuted mt-2">
-                        {description}
-                      </p>
-                    </div>
-                  </Link>
+                  )
                 )
-              )
             )}
           </div>
         </div>

@@ -1,5 +1,5 @@
 ---
-title: "My Third Post"
+title: "Ancient Wisdom for Modern Living: Lessons from Eastern Philosophies"
 category: "Random"
 date: "2022-01-02"
 coverImage: "/img/test2.jpg"

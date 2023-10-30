@@ -1,45 +1,51 @@
 const colors = require('tailwindcss/colors');
 
-const isRounded = true;
+const isRounded = false;
 
 const colorScheme1 = {
-  background: colors.white,
+  background: colors.zinc[100],
   textPrimary: colors.black,
-  textSecondary: colors.white,
-  textCategoryLabel: colors.white,
+  textSecondary: colors.zinc[100],
+  textCategoryLabel: colors.zinc[100],
   textMuted: colors.zinc[700],
-  postBackground: colors.white,
+  borders: colors.zinc[400],
+  postBackground: colors.zinc[100],
   postBackgroundHover: colors.zinc[200],
-  boardBackground: colors.white,
-  navBackground: colors.white,
+  boardBackground: colors.zinc[100],
+  navBackground: colors.zinc[100],
+  shadows: colors.zinc[900],
   gradientStart: colors.emerald[400],
   gradientEnd: colors.blue[400],
 }
 
 const darkGreenScheme = {
-  background: colors.black,
+  background: colors.zinc[900],
   textPrimary: colors.white,
-  textSecondary: colors.black,
-  textCategoryLabel: colors.black,
+  textSecondary: colors.zinc[900],
+  textCategoryLabel: colors.zinc[900],
   textMuted: colors.zinc[200],
-  postBackground: colors.zinc[800],
-  postBackgroundHover: colors.zinc[700],
-  boardBackground: colors.black,
-  navBackground: colors.black,
+  borders: colors.emerald[400],
+  postBackground: colors.zinc[900],
+  postBackgroundHover: colors.zinc[800],
+  boardBackground: colors.zinc[900],
+  navBackground: colors.zinc[900],
+  shadows: colors.zinc[900],
   gradientStart: colors.emerald[400],
   gradientEnd: colors.blue[400],
 }
 
 const lightGreenScheme = {
   background: '#508264',
-  textPrimary: colors.white,
+  textPrimary: colors.zinc[100],
   textSecondary: colors.black,
-  textCategoryLabel: colors.white,
+  textCategoryLabel: colors.zinc[100],
   textMuted: colors.zinc[200],
+  borders: colors.zinc[200],
   postBackground: '#508264',
   postBackgroundHover: '#578e6d',
   boardBackground: '#508264',
   navBackground: '#508264',
+  shadows: colors.zinc[900],
   gradientStart: "#e14d61",
   gradientEnd: "#6457ae",
 }
@@ -72,6 +78,12 @@ const config = {
       borderRadius: {
         custom: isRounded ? '0.375rem' : '0rem', 
       },
+      boxShadow: {
+        xl: '10px 10px 0px 0px rgba(0, 0, 0, 0.3)',
+      },
+      animation: {
+        spin: 'spin 1s ease-in-out',
+      }
     },
     colors : {
       ...colorScheme1,
