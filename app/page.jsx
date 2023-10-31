@@ -12,6 +12,8 @@ import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 
 export default function Home() {
   const [allPostsData, setAllPostsData] = useState([]);
+  const [heroPost, setHeroPost] = useState(null);
+  const [otherPosts, setOtherPosts] = useState([]);
   const [page, setPage] = useState(1);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
@@ -34,6 +36,13 @@ export default function Home() {
   }, [page, selectedCategory]);
 
   useEffect(() => {
+    if (allPostsData.length > 0) {
+      setHeroPost(allPostsData[0]);
+      setOtherPosts(allPostsData.slice(1));
+    }
+  }, [allPostsData, selectedCategory, page]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop !==
@@ -51,23 +60,36 @@ export default function Home() {
   return (
     <>
       <div className="px-4 md:px-8">
-        {allPostsData.length > 0 && (
-          <div className="max-w-screen-2xl mx-auto p-4 pt-0 lg:border-b lg:border-b-borders">
-            <HeroPostCard {...allPostsData[0]} />
+        {heroPost && (
+          <div className="max-w-screen-2xl mx-auto w-full p-6 pt-2">
+            <HeroPostCard
+              id={heroPost.id}
+              date={heroPost.date}
+              category={heroPost.category}
+              title={heroPost.title}
+              coverImage={heroPost.coverImage}
+              description={heroPost.description}
+              isNew={heroPost.isNew}
+            />
           </div>
         )}
-        <div className="mx-auto p-2 max-w-screen-2xl bg-boardBackground rounded-custom">
-          <div className="w-full flex flex-wrap">
-            {allPostsData.length == 0 && selectedCategory != "All" ? (
-              <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl">
-                Nothing to see here...yet.
-              </div>
-            ) : (
-              allPostsData
-                .slice(1)
-                .map(
-                  ({ id, date, title, category, coverImage, description }) => (
-                    <div key={id} className="w-full lg:w-1/2 p-4">
+        {otherPosts.length > 0 && (
+          <div className="mx-auto max-w-screen-2xl bg-boardBackground rounded-custom md:border-t-2 md:border-dashed md:border-t-borders">
+            <div className="w-full flex flex-wrap">
+              {otherPosts.length == 0 && selectedCategory != "All" ? (
+                <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl"></div>
+              ) : (
+                otherPosts.map(
+                  ({
+                    id,
+                    date,
+                    title,
+                    category,
+                    coverImage,
+                    description,
+                    isNew,
+                  }) => (
+                    <div key={id} className="w-full lg:w-1/2 p-6">
                       <PostCard
                         id={id}
                         date={date}
@@ -75,13 +97,15 @@ export default function Home() {
                         title={title}
                         coverImage={coverImage}
                         description={description}
+                        isNew={isNew}
                       />
                     </div>
                   )
                 )
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

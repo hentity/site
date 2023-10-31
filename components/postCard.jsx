@@ -15,6 +15,7 @@ export default function PostCard({
   category,
   coverImage,
   description,
+  isNew,
 }) {
   const categoryColours = useCategoryColours();
 
@@ -24,7 +25,7 @@ export default function PostCard({
         key={id}
         href={`/posts/${id}`}
         className={
-          "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-shadows shadow-xl shadow-shadows focus:shadow-none focus:translate-y-1.5 focus:border-postBackground lg:border-2 lg:border-postBackground lg:shadow-none lg:hover:border-shadows lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5"
+          "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-borders shadow-xl shadow-shadows focus:shadow-none focus:duration-100 focus:translate-y-1.5 focus:border-postBackground lg:border-2 lg:border-borders lg:shadow-shadows lg:shadow-lg lg:hover:border-borders lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5 lg:focus:shadow-none lg:focus:translate-y-1 lg:focus:border-postBackground"
         }
       >
         <div className="w-full md:w-5/12 p-2">
@@ -58,9 +59,9 @@ export default function PostCard({
               style={{
                 backgroundColor: categoryColours[category],
               }}
-              className="h-fit px-2 rounded-custom py-0.5 font-sans font-semibold text-textCategoryLabel"
+              className="px-2 my-1 lowercase rounded-md rounded-custom h-fit w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
             >
-              {category}
+              #{category}
             </div>
           </div>
           {/* <p className="text-lg font-sans text-textMuted mt-2">{description}</p> */}

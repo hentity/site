@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex px-4 items-center relative bg-navBackground ">
+      <nav className="flex px-4 items-center relative bg-navBackground fffborder-b-2 border-borders">
         {/* border-b border-b-borders border-b-1 */}
         <div className="text-xl font-bold py-2 w-1/6">
           <Link
@@ -30,13 +30,15 @@ export default function Navbar() {
             className="flex items-center group w-fit"
           >
             <div className="relative font-sans transition ease-in-out text-textPrimary">
-              <div className="transition duration-300">Henlightened</div>
+              <div className=" transition duration-300 underline decoration-navBackground decoration-dashed group-hover:decoration-shadows group-hover:decoration-dashed">
+                Henlightened
+              </div>
             </div>
             <Logo className="bg-textPrimary" />
           </Link>
         </div>
 
-        <div className="hidden md:flex md:justify-center md:space-x-2 lg:space-x-4 md:items-center md:w-3/4">
+        <div className="hidden md:flex md:justify-center md:space-x-1.5 lg:space-x-4 md:items-center md:w-3/4">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
@@ -44,7 +46,7 @@ export default function Navbar() {
                 onClick={() => {
                   setSelectedCategory(category);
                 }}
-                className="group inline-block relative"
+                className="group inline-block relative font-bold"
               >
                 {/* OTHER STYLING OPTIONS FOR CATEGORY LINKS */}
 
@@ -87,8 +89,8 @@ export default function Navbar() {
                 </div>
               </Link>
               {index < arr.length - 1 && (
-                <span className="font-sans text-textPrimary text-sm cursor-default">
-                  •
+                <span className="font-sans text-2xl font-bold text-textPrimary cursor-default">
+                  ~
                 </span>
               )}
             </React.Fragment>
@@ -124,7 +126,7 @@ export default function Navbar() {
                   setSelectedCategory(category);
                   setIsMenuOpen(false);
                 }}
-                className="flex w-full p-1 items-center space-x-2 font-sans font-semibold text-2xl focus:bg-postBackgroundHover"
+                className="flex w-full p-1 items-center space-x-2 font-sans font-bold text-2xl focus:bg-postBackgroundHover"
               >
                 <div
                   style={{ backgroundColor: categoryColours[category] }}
@@ -137,7 +139,7 @@ export default function Navbar() {
           <Link
             href="/about"
             onClick={() => setIsMenuOpen(false)}
-            className="p-1 pt-4 border-t-2 font-semibold w-full font-sans text-2xl focus:bg-postBackgroundHover"
+            className="p-1 pt-4 border-t-2 border-dashed font-bold w-full font-sans text-2xl focus:bg-postBackgroundHover"
           >
             About
           </Link>

@@ -8,12 +8,28 @@ const colorScheme1 = {
   textSecondary: colors.zinc[100],
   textCategoryLabel: colors.zinc[100],
   textMuted: colors.zinc[700],
-  borders: colors.zinc[400],
+  borders: colors.zinc[900],
   postBackground: colors.zinc[100],
   postBackgroundHover: colors.zinc[200],
   boardBackground: colors.zinc[100],
   navBackground: colors.zinc[100],
   shadows: colors.zinc[900],
+  gradientStart: colors.emerald[400],
+  gradientEnd: colors.blue[400],
+}
+
+const retroScheme = {
+  background: "#eae5d9",
+  textPrimary: "#332433",
+  textSecondary: "#eae5d9",
+  textCategoryLabel: "#eae5d9",
+  textMuted: "#443144",
+  borders: "#332433",
+  postBackground: "#eae5d9",
+  postBackgroundHover: colors.zinc[200],
+  boardBackground: "#eae5d9",
+  navBackground: "#eae5d9",
+  shadows: "#332433",
   gradientStart: colors.emerald[400],
   gradientEnd: colors.blue[400],
 }
@@ -80,13 +96,14 @@ const config = {
       },
       boxShadow: {
         xl: '10px 10px 0px 0px rgba(0, 0, 0, 0.3)',
+        lg: '5px 5px 0px 0px rgba(0, 0, 0, 0.3)',
       },
       animation: {
         spin: 'spin 1s ease-in-out',
       }
     },
     colors : {
-      ...colorScheme1,
+      ...retroScheme,
     },
     fontFamily: {
       sans: ['var(--font-mulish)'],

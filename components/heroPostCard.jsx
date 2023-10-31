@@ -15,15 +15,17 @@ export default function HeroPostCard({
   category,
   coverImage,
   description,
+  isNew,
 }) {
   const categoryColours = useCategoryColours();
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
   return (
     <>
       <Link
         key={id}
         href={`/posts/${id}`}
-        className="transition p-2 flex max-lg:flex-col group duration-300 h-full ease-in-out bg-postBackground rounded-custom border-2 border-shadows shadow-xl shadow-shadows focus:shadow-none focus:translate-y-1.5 focus:border-postBackground lg:border-2 lg:border-postBackground lg:shadow-none lg:hover:border-shadows lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5"
+        className="relative transition p-0 md:p-2 md:mb-3 lg:mb-0 flex max-lg:flex-col group duration-50 focus:duration-100 lg:duration-300 h-full ease-in-out bg-postBackground rounded-custom border-2 border-borders shadow-xl shadow-shadows focus:shadow-none focus:translate-y-1.5 focus:border-postBackground lg:border-2 lg:border-borders lg:shadow-shadows lg:shadow-lg lg:hover:border-borders lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5 lg:focus:shadow-none lg:focus:translate-y-1.5 lg:focus:border-postBackground"
       >
         <div className="w-full lg:w-1/2 p-2">
           <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
@@ -37,7 +39,7 @@ export default function HeroPostCard({
           </div>
         </div>
 
-        <div className="flex flex-col w-full lg:w-1/2 px-6 pt-4 h-fill">
+        <div className="flex flex-col w-full lg:w-1/2 p-2 md:p-0 md:px-6 md:pt-4 h-fill">
           <div className="flex">
             <div className="relative text-textPrimary font-sans font-bold text-2xl md:text-3xl xl:text-4xl w-fit ">
               {title}
@@ -60,9 +62,9 @@ export default function HeroPostCard({
             style={{
               backgroundColor: categoryColours[category],
             }}
-            className="px-2 my-1 rounded-custom w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
+            className="px-2 my-1 lowercase rounded-md rounded-custom w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
           >
-            {category}
+            #{category}
           </div>
           {/* <div className="flex h-full items-end self-end">
             <div className="text-textMuted text-md h-fit font-semibold font-light font-sans">
@@ -76,6 +78,11 @@ export default function HeroPostCard({
             </div>
           </div> */}
         </div>
+        {isNew == "True" && (
+          <div className="absolute py-0.5 px-4 font-sans border-2 border-borders border-dashed font-bold text-xl bottom-4 right-4">
+            New
+          </div>
+        )}
       </Link>
     </>
   );

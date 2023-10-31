@@ -16,7 +16,7 @@ const categoryColours1 = {
 };
 
 const categoryColours2 = {
-  All: "#000000",
+  All: "#242427",
   Tech: "#ef7f7a", 
   Books: "#4b73b1",
   Music: "#e14d61", 
@@ -25,9 +25,19 @@ const categoryColours2 = {
   // Other: "#e14d61",
 };
 
+const retroCategoryColours = {
+  All: "#242427",
+  Tech: "#7d9f86", 
+  Books: "#6a87a5",
+  Music: "#e69265", 
+  Fitness: "#c76e7a", 
+  Movies: "#895570",
+  // Other: "#e14d61",
+};
+
 export function CategoryColoursProvider({ children }) {
   return (
-    <CategoryColoursContext.Provider value={categoryColours2}>
+    <CategoryColoursContext.Provider value={retroCategoryColours}>
       {children}
     </CategoryColoursContext.Provider>
   );
