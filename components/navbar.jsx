@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex px-4 items-center relative bg-navBackground fffborder-b-2 border-borders">
+      <nav className="flex px-4 items-center sticky top-0 bg-navBackground z-50 fffborder-b-2 fffborder-borders">
         {/* border-b border-b-borders border-b-1 */}
         <div className="text-xl font-bold py-2 w-1/6">
           <Link
@@ -30,15 +30,13 @@ export default function Navbar() {
             className="flex items-center group w-fit"
           >
             <div className="relative font-sans transition ease-in-out text-textPrimary">
-              <div className=" transition duration-300 underline decoration-navBackground decoration-dashed group-hover:decoration-shadows group-hover:decoration-dashed">
-                Henlightened
-              </div>
+              <div className="">Henlightened</div>
             </div>
             <Logo className="bg-textPrimary" />
           </Link>
         </div>
 
-        <div className="hidden md:flex md:justify-center md:space-x-1.5 lg:space-x-4 md:items-center md:w-3/4">
+        <div className="hidden md:flex md:justify-center md:space-x-1.5 lg:space-x-4 md:items-center md:w-3/4 lg:w-2/3">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
@@ -97,7 +95,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex md:absolute md:right-4 md:w-1/6 md:justify-end md:justify-end">
+        <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 lg:w-1/6 md:justify-end md:justify-end">
           <Link
             href="/about"
             className="font-sans text-xl font-bold text-textPrimary transition ease-in-out duration-300"
@@ -139,7 +137,7 @@ export default function Navbar() {
           <Link
             href="/about"
             onClick={() => setIsMenuOpen(false)}
-            className="p-1 pt-4 border-t-2 border-dashed font-bold w-full font-sans text-2xl focus:bg-postBackgroundHover"
+            className="p-1 pt-4 border-t-2 font-bold w-full font-sans text-2xl focus:bg-postBackgroundHover"
           >
             About
           </Link>

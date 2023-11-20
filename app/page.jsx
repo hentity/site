@@ -74,7 +74,7 @@ export default function Home() {
           </div>
         )}
         {otherPosts.length > 0 && (
-          <div className="mx-auto max-w-screen-2xl bg-boardBackground rounded-custom md:border-t-2 md:border-dashed md:border-t-borders">
+          <div className="mx-auto max-w-screen-2xl bg-boardBackground md:border-t-2 md:border-borders">
             <div className="w-full flex flex-wrap">
               {otherPosts.length == 0 && selectedCategory != "All" ? (
                 <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl"></div>

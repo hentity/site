@@ -7,18 +7,18 @@ export default async function Post({ params }) {
 
   return (
     <div className="container mx-auto px-4 md:px-0">
-      <article className="prose prose-lg prose-headings:text-textPrimary prose-p:text-textMuted prose-li:text-textMuted mx-auto mt-4 mb-20">
+      <article className="prose prose-lg prose-headings:text-textPrimary prose-h1:text-4xl prose-p:text-textPrimary prose-li:text-textMuted mx-auto mt-4 mb-20">
         {/* Post Title */}
         <h1 className="mb-4 font-sans">{postData.title}</h1>
 
-        <div className="mb-8 font-sans text-textMuted">
+        <div className="mb-8 font-sans text-textPrimary font-semibold">
           {new Date(postData.date)
-            .toLocaleDateString(undefined, {
+            .toLocaleDateString("default", {
+              day: "numeric",
+              month: "long",
               year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
             })
-            .replace(/\//g, ".")}
+            .replace(/\//g, " ")}
         </div>
 
         {/* Post Content */}

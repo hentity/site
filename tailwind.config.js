@@ -1,6 +1,6 @@
 const colors = require('tailwindcss/colors');
 
-const isRounded = false;
+const isRounded = true;
 
 const colorScheme1 = {
   background: colors.zinc[100],
@@ -18,17 +18,18 @@ const colorScheme1 = {
   gradientEnd: colors.blue[400],
 }
 
+const retroBackground = colors.stone[200]
 const retroScheme = {
-  background: "#eae5d9",
+  background: retroBackground,
   textPrimary: "#332433",
-  textSecondary: "#eae5d9",
-  textCategoryLabel: "#eae5d9",
+  textSecondary: retroBackground,
+  textCategoryLabel: retroBackground,
   textMuted: "#443144",
   borders: "#332433",
-  postBackground: "#eae5d9",
+  postBackground: retroBackground,
   postBackgroundHover: colors.zinc[200],
-  boardBackground: "#eae5d9",
-  navBackground: "#eae5d9",
+  boardBackground: retroBackground,
+  navBackground: retroBackground,
   shadows: "#332433",
   gradientStart: colors.emerald[400],
   gradientEnd: colors.blue[400],
