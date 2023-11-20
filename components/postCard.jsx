@@ -28,7 +28,7 @@ export default function PostCard({
           "transition flex max-md:flex-col group duration-300 h-full ease-in-out rounded-custom bg-postBackground border-2 border-borders shadow-xl shadow-shadows lg:border-2 lg:border-borders lg:shadow-shadows lg:shadow-lg lg:hover:border-borders lg:hover:shadow-xl lg:hover:shadow-shadows lg:hover:-translate-y-1.5"
         }
       >
-        <div className="w-full md:w-5/12 p-2">
+        <div className="w-full md:w-5/12 lg:w-1/2 p-2">
           <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
             <Image
               className="object-cover rounded-custom absolute inset-0 w-full h-full"
@@ -39,9 +39,9 @@ export default function PostCard({
             />
           </div>
         </div>
-        <div className="w-full flex flex-col justify-top md:w-7/12 p-2">
+        <div className="w-full flex flex-col justify-top md:w-7/12 lg:w-1/2 p-2">
           <div className="flex">
-            <div className="relative text-textPrimary font-sans font-bold text-2xl w-fit">
+            <div className="relative text-textPrimary font-sans font-bold text-xl xl:text-2xl w-fit">
               {title}
             </div>
           </div>

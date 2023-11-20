@@ -11,7 +11,7 @@ import { useCategoryColours } from "./context/CategoryContext";
 import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 
 export default function Home() {
-  const [allPostsData, setAllPostsData] = useState([]);
+  const [allPostsData, setAllPostsData] = useState(null);
   const [heroPost, setHeroPost] = useState(null);
   const [otherPosts, setOtherPosts] = useState([]);
   const [page, setPage] = useState(1);
@@ -20,27 +20,31 @@ export default function Home() {
   const categoryColours = useCategoryColours();
 
   useEffect(() => {
-    setAllPostsData([]);
+    setAllPostsData(null);
     setPage(1);
   }, [selectedCategory]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchSortedPostsData(page, selectedCategory);
-      if (Array.isArray(data)) {
-        setAllPostsData((prevData) => [...prevData, ...data]);
-      }
+      setAllPostsData(data);
     };
 
     fetchData();
   }, [page, selectedCategory]);
 
   useEffect(() => {
-    if (allPostsData.length > 0) {
-      setHeroPost(allPostsData[0]);
-      setOtherPosts(allPostsData.slice(1));
+    console.log(allPostsData);
+    if (allPostsData == null || allPostsData == []) {
+      setHeroPost(null);
+      setOtherPosts([]);
+    } else {
+      if (allPostsData.length > 0) {
+        setHeroPost(allPostsData[0]);
+        setOtherPosts(allPostsData.slice(1));
+      }
     }
-  }, [allPostsData, selectedCategory, page]);
+  }, [allPostsData, selectedCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,6 +108,11 @@ export default function Home() {
                 )
               )}
             </div>
+          </div>
+        )}
+        {allPostsData && allPostsData.length == 0 && (
+          <div className="w-fit mx-auto font-sans text-textPrimary font-semibold text-xl">
+            No posts here... yet.
           </div>
         )}
       </div>

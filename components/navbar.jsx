@@ -78,7 +78,7 @@ export default function Navbar() {
                           ? "#000000"
                           : categoryColours[category],
                     }}
-                    className="absolute inset-x-0 bottom-0 h-1 transition ease-in-out opacity-0 duration-200 group-hover:opacity-100"
+                    className="absolute inset-x-0 bottom-0 h-1 transition ease-in-out opacity-30 duration-200 group-hover:opacity-100"
                   ></div>
                 )}
 
