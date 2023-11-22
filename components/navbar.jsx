@@ -30,7 +30,7 @@ export default function Navbar() {
             className="flex items-center group w-fit"
           >
             <div className="relative font-sans transition ease-in-out text-textPrimary">
-              <div className="">Henlightened</div>
+              <div className="align-middle">Henlightened</div>
             </div>
             <Logo className="bg-textPrimary" />
           </Link>
@@ -87,9 +87,7 @@ export default function Navbar() {
                 </div>
               </Link>
               {index < arr.length - 1 && (
-                <span className="font-sans text-2xl font-bold text-textPrimary cursor-default">
-                  ~
-                </span>
+                <span className="font-sans text-2xl font-bold text-textPrimary cursor-default"></span>
               )}
             </React.Fragment>
           ))}
@@ -97,7 +95,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 lg:w-1/6 md:justify-end md:justify-end">
           <Link
-            href="/about"
+            href="/"
             className="font-sans text-xl font-bold text-textPrimary transition ease-in-out duration-300"
           >
             About
@@ -126,10 +124,17 @@ export default function Navbar() {
                 }}
                 className="flex w-full p-1 items-center space-x-2 font-sans font-bold text-2xl focus:bg-postBackgroundHover"
               >
-                <div
-                  style={{ backgroundColor: categoryColours[category] }}
-                  className="w-1 h-full mr-1"
-                ></div>
+                {selectedCategory === category && pathname === "/" ? (
+                  <div
+                    style={{ backgroundColor: categoryColours[category] }}
+                    className="w-1 h-full mr-1"
+                  ></div>
+                ) : (
+                  <div
+                    style={{ backgroundColor: categoryColours[category] }}
+                    className="w-1 h-full mr-1 opacity-50 hover:opacity-100 focus:opacity-100"
+                  ></div>
+                )}
                 {category}
               </Link>
             ))}

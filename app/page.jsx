@@ -11,31 +11,36 @@ import { useCategoryColours } from "./context/CategoryContext";
 import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 
 export default function Home() {
-  const [allPostsData, setAllPostsData] = useState(null);
+  const [allPostsData, setAllPostsData] = useState([]);
   const [heroPost, setHeroPost] = useState(null);
   const [otherPosts, setOtherPosts] = useState([]);
   const [page, setPage] = useState(1);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
+  const [isLoading, setIsLoading] = useState(false);
 
   const categoryColours = useCategoryColours();
 
   useEffect(() => {
-    setAllPostsData(null);
+    setIsLoading(true);
+    setAllPostsData([]);
     setPage(1);
   }, [selectedCategory]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const data = await fetchSortedPostsData(page, selectedCategory);
-      setAllPostsData(data);
+      setIsLoading(false);
+      setAllPostsData((prevData) => {
+        return page === 1 ? data : [...prevData, ...data];
+      });
     };
 
     fetchData();
   }, [page, selectedCategory]);
 
   useEffect(() => {
-    console.log(allPostsData);
-    if (allPostsData == null || allPostsData == []) {
+    if (!isLoading && allPostsData.length === 0) {
       setHeroPost(null);
       setOtherPosts([]);
     } else {
@@ -44,7 +49,7 @@ export default function Home() {
         setOtherPosts(allPostsData.slice(1));
       }
     }
-  }, [allPostsData, selectedCategory]);
+  }, [allPostsData, isLoading]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,12 +59,12 @@ export default function Home() {
       ) {
         return;
       }
-      setPage((prevPage) => prevPage + 1); // increase page number to fetch the next set of posts
+      setPage((prevPage) => prevPage + 1);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isLoading]);
 
   return (
     <>
@@ -110,7 +115,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        {allPostsData && allPostsData.length == 0 && (
+        {!isLoading && allPostsData.length == 0 && (
           <div className="w-fit mx-auto font-sans text-textPrimary font-semibold text-xl">
             No posts here... yet.
           </div>

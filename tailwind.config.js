@@ -1,6 +1,6 @@
 const colors = require('tailwindcss/colors');
 
-const isRounded = true;
+const isRounded = false;
 
 const colorScheme1 = {
   background: colors.zinc[100],
@@ -18,19 +18,20 @@ const colorScheme1 = {
   gradientEnd: colors.blue[400],
 }
 
-const retroBackground = colors.stone[200]
+const retroBackground = colors.stone[100]
 const retroScheme = {
   background: retroBackground,
-  textPrimary: "#332433",
+  textPrimary: colors.stone[800],
   textSecondary: retroBackground,
+  codeBackground: colors.stone[200],
   textCategoryLabel: retroBackground,
-  textMuted: "#443144",
-  borders: "#332433",
+  textMuted: colors.stone[600],
+  borders: colors.stone[800],
   postBackground: retroBackground,
   postBackgroundHover: colors.zinc[200],
   boardBackground: retroBackground,
   navBackground: retroBackground,
-  shadows: "#332433",
+  shadows: colors.stone[800],
   gradientStart: colors.emerald[400],
   gradientEnd: colors.blue[400],
 }
@@ -79,6 +80,7 @@ const config = {
         return {
           DEFAULT: {
             css: {
+              '--tw-prose-bullets': "#332433",
               'code::before': {
                 content: 'none',
               },
@@ -86,8 +88,10 @@ const config = {
                 content: 'none'
               },
               fontFamily: {
-                sans: ['var(--font-mulish)'],
+                sans: ['var(--font-sans)'],
+                serif: ['var(--font-serif)'],
               },
+
             }
           }
         }
@@ -107,7 +111,8 @@ const config = {
       ...retroScheme,
     },
     fontFamily: {
-      sans: ['var(--font-mulish)'],
+      sans: ['var(--font-sans)'],
+      serif: ['var(--font-serif)']
     },
   },
   plugins: [

@@ -27,11 +27,11 @@ const categoryColours2 = {
 
 const retroCategoryColours = {
   All: "#242427",
-  Tech: "#7d9f86", 
-  Books: "#6a87a5",
-  Music: "#e69265", 
-  Fitness: "#c76e7a", 
-  Movies: "#895570",
+  Tech: "#6a87a5", 
+  Music: "#7d9f86",
+  History: "#e69265",
+  Projects: "#c76e7a", 
+  // Movies: "#895570",
   // Other: "#e14d61",
 };
 

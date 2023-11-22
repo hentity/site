@@ -1,8 +1,8 @@
 ---
-title: "The fate and significance of the release of Nolan’s “Oppenheimer” in Japan"
-category: "Music"
+title: "Coding an AI to Play Chess: Strategies and Challenges"
+category: "Tech"
 date: "2023-01-01"
-coverImage: "/img/test.jpg"
+coverImage: "/img/test2.jpg"
 description: "A brief description of the post, to be displayed when it is previewed. Shouldn't be more than a couple of sentences."
 isNew: "True"
 ---

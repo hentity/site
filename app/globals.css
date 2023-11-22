@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 
 body {
     @apply bg-background; 
+  }
+
+  .hljs {
+    @apply bg-codeBackground
   }
 
 /* cool green - #508264 */
