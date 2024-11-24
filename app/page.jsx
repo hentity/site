@@ -16,7 +16,7 @@ export default function Home() {
   const [otherPosts, setOtherPosts] = useState([]);
   const [page, setPage] = useState(1);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const categoryColours = useCategoryColours();
 
@@ -30,10 +30,10 @@ export default function Home() {
     const fetchData = async () => {
       setIsLoading(true);
       const data = await fetchSortedPostsData(page, selectedCategory);
-      setIsLoading(false);
       setAllPostsData((prevData) => {
         return page === 1 ? data : [...prevData, ...data];
       });
+      setIsLoading(false);
     };
 
     fetchData();

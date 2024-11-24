@@ -36,7 +36,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:flex md:justify-center md:space-x-1.5 lg:space-x-4 md:items-center md:w-3/4 lg:w-2/3">
+        <div className="hidden md:flex md:justify-end md:space-x-1.5 lg:space-x-4 md:items-center w-5/6">
           {Object.keys(categoryColours).map((category, index, arr) => (
             <React.Fragment key={category}>
               <Link
@@ -93,14 +93,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 lg:w-1/6 md:justify-end md:justify-end">
+        {/* <div className="hidden md:flex md:absolute md:right-4 md:w-1/12 lg:w-1/6 md:justify-end md:justify-end">
           <Link
             href="/"
             className="font-sans text-xl font-bold text-textPrimary transition ease-in-out duration-300"
           >
             About
           </Link>
-        </div>
+        </div> */}
 
         <div className="md:hidden flex absolute right-4 w-1/12 justify-end">
           <button onClick={toggleMenu} className="text-3xl font-bold">

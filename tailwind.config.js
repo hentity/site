@@ -1,6 +1,6 @@
 const colors = require('tailwindcss/colors');
 
-const isRounded = false;
+const isRounded = true;
 
 const colorScheme1 = {
   background: colors.zinc[100],
@@ -8,7 +8,7 @@ const colorScheme1 = {
   textSecondary: colors.zinc[100],
   textCategoryLabel: colors.zinc[100],
   textMuted: colors.zinc[700],
-  borders: colors.zinc[900],
+  borders: colors.zinc[600],
   postBackground: colors.zinc[100],
   postBackgroundHover: colors.zinc[200],
   boardBackground: colors.zinc[100],
@@ -18,12 +18,12 @@ const colorScheme1 = {
   gradientEnd: colors.blue[400],
 }
 
-const retroBackground = colors.stone[100]
+const retroBackground = "#ffffff"
 const retroScheme = {
   background: retroBackground,
   textPrimary: colors.stone[800],
   textSecondary: retroBackground,
-  codeBackground: colors.stone[200],
+  codeBackground: colors.gray[900],
   textCategoryLabel: retroBackground,
   textMuted: colors.stone[600],
   borders: colors.stone[800],
@@ -87,11 +87,34 @@ const config = {
               'code::after': {
                 content: 'none'
               },
+              'img': {
+                display: 'block',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+              'td': {
+                textAlign: 'center',
+              },
+              'th': {
+                textAlign: 'center',
+              },
+              'a': {
+                fontWeight: 'normal',
+                color: colors.blue[700],
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              },
+              'pre': {
+                backgroundColor: retroScheme.codeBackground, // Set custom background color for code blocks
+                padding: theme('spacing.4'), // Optional: add padding for better spacing
+                borderRadius: theme('borderRadius.md'), // Optional: add rounded corners
+              },
               fontFamily: {
                 sans: ['var(--font-sans)'],
                 serif: ['var(--font-serif)'],
               },
-
             }
           }
         }
@@ -105,7 +128,7 @@ const config = {
       },
       animation: {
         spin: 'spin 1s ease-in-out',
-      }
+      },
     },
     colors : {
       ...retroScheme,

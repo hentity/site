@@ -6,8 +6,6 @@ body {
     @apply bg-background; 
   }
 
-  .hljs {
-    @apply bg-codeBackground
-  }
-
-/* cool green - #508264 */
+/* .hljs {
+  @apply bg-codeBackground
+} */
