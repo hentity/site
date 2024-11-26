@@ -25,7 +25,7 @@ const retroScheme = {
   textSecondary: retroBackground,
   codeBackground: colors.gray[900],
   textCategoryLabel: retroBackground,
-  textMuted: colors.stone[600],
+  textMuted: colors.stone[800],
   borders: colors.stone[800],
   postBackground: retroBackground,
   postBackgroundHover: colors.zinc[200],
@@ -80,7 +80,10 @@ const config = {
         return {
           DEFAULT: {
             css: {
-              '--tw-prose-bullets': "#332433",
+              '--tw-prose-bullets': colors.stone[800],
+              'ol > li::marker': {
+              color: colors.stone[800],
+              },
               'code::before': {
                 content: 'none',
               },
