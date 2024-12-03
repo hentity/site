@@ -1,7 +1,7 @@
 import { getAllPostIds, getPostData } from "@/lib/serverPosts";
 import "@/app/globals.css";
 import Image from "next/image";
-import "highlight.js/styles/androidstudio.css"; // or the theme of your choice
+import "highlight.js/styles/github.css";
 
 // Define the loader function for server-side data fetching
 export async function loader({ params }) {
@@ -15,7 +15,7 @@ export default async function Post({ params }) {
 
   return (
     <div className="flex flex-col mx-auto w-full px-4 md:px-8">
-      <article className="prose prose-p:text-[1.4rem]/[1.75rem] prose-ol:text-[1.4rem]/[1.75rem] prose-li:text-[1.4rem]/[1.75rem] prose-h3:text-3xl prose-pre:p-0 prose-code:text-md prose-code:rounded-custom prose-code:text-textPrimary prose-ol:text-textPrimary prose-xl prose-headings:font-sans prose-h3:font-bold w-full prose-ol:font-serif prose-p:font-serif prose-ul:font-serif prose-h1:text-4xl prose-p:text-textPrimary prose-ul:text-textPrimary prose-ul:list-disc prose-li:text-textPrimary mx-auto mt-4 mb-20">
+      <article className="prose prose-p:text-[1.4rem]/[1.75rem] prose-ol:text-[1.4rem]/[1.75rem] prose-pre:text-[1.4rem]/[1.75rem] prose-li:text-[1.4rem]/[1.75rem] prose-h3:text-3xl prose-pre:p-0 prose-ol:text-textPrimary prose-xl prose-headings:font-sans prose-h3:font-bold w-full prose-ol:font-serif prose-p:font-serif prose-ul:font-serif prose-h1:text-4xl prose-p:text-textPrimary prose-ul:text-textPrimary prose-ul:list-disc prose-li:text-textPrimary mx-auto mt-4 mb-20">
         <div className="w-full">
           <Image
             className="rounded-custom object-contain w-full bg-background mt-2"

@@ -7,30 +7,30 @@ description: "I'm terrible at video games. Can an exploration into AI planning a
 isNew: "False"
 ---
 
-I've never been any good at video games. Quick reflexes, precise inputs and trash talk just don't seem to be my thing. Luckily, as a programmer I can choose to delegate these skills to my computer (minus the trash talk, [for now](https://lowtech.ai/sebastian-gonzalez/trash-talker)). In this project, I plan to do exactly that. Using some AI planning techiques I picked up recently at uni, plus [Berkeley's python implementation](https://ai.berkeley.edu/contest.html) of Pacman Capture-the-Flag, my goal is to create an agent that can beat me, or at least put up a decent fight.
+I've never been any good at video games. Quick reflexes, precise inputs and trash talk just don't seem to be my thing. Luckily, as a programmer I can choose to delegate these skills to my computer (minus the trash talk, [for now](https://lowtech.ai/sebastian-gonzalez/trash-talker)). Using some AI planning tricks, plus Berkeley's [Pacman Capture-the-Flag](https://ai.berkeley.edu/contest.html) python project, my goal is to create a pacman-playing bot that can beat me, or at least put up a decent fight.
 
 ### Pacman Capture-the-Flag
 
-The game is a multiplayer, capture-the-flag variant of pacman, where agents control both pacman and ghosts in coordinated team-based strategies. Your team will try to eat the food on the far side of the map, while defending the food on your home side.
+The bot will play a multiplayer, capture-the-flag variant of pacman, where agents control both pacman and ghosts in coordinated team-based strategies. Your team will try to eat the food on the far side of the map, while defending the food on your home side.
 
 ![Intro Image](/img/pacman/intro.png)
 
-- On the home side your agents are ghosts and on the far side, pacmen.
-- To eat enemy food, an agent needs to bring it back to home territory. If a pacman is caught by a ghost in enemy territory, it will drop the food it is currently carrying and respawn deep in its own territory.
+- In home territory, your agents are ghosts. In enemy territory, they transform into pacmen.
+- To capture enemy food, an agent needs to carry it back to home territory. If a pacman is caught by a ghost in enemy territory, it will drop the food it is currently carrying and respawn deep in its own territory.
 - The first team to capture all enemy food wins. To reduce stalemates, the team with the most food after a timeout will also win.
-- Enemy agents are only visible within a small 5-step radius
+- Opponents are only visible to each agent within a small 5-step radius of their location.
 
 See the full rules [here](https://ai.berkeley.edu/contest.html).
 
 ### Where to begin?
 
-There are many ways to go about teaching a computer to play a game like this. Following a common approach in classical [AI planning](https://en.wikipedia.org/wiki/Automated_planning_and_scheduling), I will break the problem down as follows:
+There are many ways to go about teaching a computer to play a game like this. Following a common approach in classical [AI planning](https://en.wikipedia.org/wiki/Automated_planning_and_scheduling), I will break the problem down into the following steps:
 
 1. Define **actions** (in our case up, down, left and right) that the agent can take in a game state, and a [**transition function**](https://en.wikipedia.org/wiki/Transition_system) that models how the game state changes when an agent chooses an action from a given state.
-2. Create an [**evaluation function**](https://en.wikipedia.org/wiki/Evaluation_function) to judge the desirability of a game state. The function should return a value which is higher for 'better' game states (e.g. if the team has a higher score than the opponent team) and lower for worse ones.
-3. Using (1) and (2), devise a **search algorithm** which explores possible continuations from the current game state and chooses the best action to take.
+2. Create an [**evaluation function**](https://en.wikipedia.org/wiki/Evaluation_function) to judge the desirability of a game state. The function should return a value which is higher for 'better' game states (e.g. if the team has a higher score than the opponent team).
+3. Using (1) and (2), implement a **search algorithm** which explores possible continuations from the current game state (paths) and chooses the best action to take.
 
-Lets illustrate this using an example, with a search depth of 1 (we only look one action into the future). For the moment, we will assume there is only one player.
+Lets illustrate this using an example, with a search depth of 1. For the moment, we will assume there is only one player. Our evaluation function will simply count the amount of food that has been collected in a gamestate.
 
 ![Example 1a](/img/pacman/example-1a.png)
 
@@ -38,7 +38,7 @@ In the starting state, the pacman agent has only one option: go right.
 
 ![Example 1b](/img/pacman/example-1b.png)
 
-From here, the search algorithm (at depth 1) has two future states to explore, resulting from the actions left and right. Using a simple evaluation function that simply counts the the amount of food that has been collected in a given state, the state after going right is given a higher score. Therefore, the agent will move right again and collect the food.
+From here, the search algorithm (at depth 1) has two future states to explore, resulting from the actions left and right. The state after going right is given a higher score, meaning the agent will move right again and collect the food.
 
 ![Example 1c](/img/pacman/example-1c.png)
 
@@ -59,7 +59,7 @@ To build our graph from the initial state we will need:
 1. A way of finding legal moves from a given game state.
 2. A transition function that, given an input state and an action, generates the resulting state.
 
-Fortunately, these are implemented by the `getLegalActions` and `generateSuccessor` function respectively in Berkeley's base code.
+Fortunately, these are implemented by the `getLegalActions` and `generateSuccessor` functions respectively in Berkeley's base code.
 
 ### Evaluation
 
@@ -76,11 +76,14 @@ Here's a simplified version of this in python.
 ```python
 def evaluateState(searchState, rootState, depth):
     if agent.isHome():
-        return -depth - searchState.getEnemyDistance()   # Reward moving toward enemy territory
+        # Reward moving toward enemy territory
+        return -depth - searchState.getEnemyDistance()
     else if agent.carryingFood() == 0 or rootState.getFoodDistance() < rootState.getHomeDistance():
-        return -depth - searchState.getFoodDistance  # Reward moving toward food
+        # Reward moving toward food
+        return -depth - searchState.getFoodDistance
     else:
-        return -depth - searchState.getHomeDistance  # Reward moving toward home
+        # Reward moving toward home
+        return -depth - searchState.getHomeDistance
 ```
 
 This also indirectly incentivises avoiding capture, as the agent is sent back to the starting position (far from food or the boundary) when captured.

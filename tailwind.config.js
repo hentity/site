@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const plugin = require("tailwindcss/plugin");
 
 const isRounded = true;
 
@@ -90,6 +91,9 @@ const config = {
               'code::after': {
                 content: 'none'
               },
+              'code': {
+                fontWeight: 'normal',
+              },
               'img': {
                 display: 'block',
                 marginLeft: 'auto',
@@ -109,11 +113,11 @@ const config = {
                   textDecoration: 'underline',
                 },
               },
-              'pre': {
-                backgroundColor: retroScheme.codeBackground, // Set custom background color for code blocks
-                padding: theme('spacing.4'), // Optional: add padding for better spacing
-                borderRadius: theme('borderRadius.md'), // Optional: add rounded corners
-              },
+              // 'pre': {
+              //   backgroundColor: retroScheme.codeBackground, // Set custom background color for code blocks
+              //   padding: theme('spacing.4'), // Optional: add padding for better spacing
+              //   borderRadius: theme('borderRadius.md'), // Optional: add rounded corners
+              // },
               fontFamily: {
                 sans: ['var(--font-sans)'],
                 serif: ['var(--font-serif)'],
@@ -143,6 +147,18 @@ const config = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    plugin(function ({ addComponents }) {
+      addComponents({
+        ".prose code": {
+          backgroundColor: "#f6f8fa", // GitHub-style background
+          color: "#24292e",          // GitHub-style text color
+          borderRadius: "3px",
+          padding: "0.2em 0.4em",
+          fontSize: "75%",
+          fontFamily: 'ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace',
+        },
+      });
+    }),
   ],
 }
 
