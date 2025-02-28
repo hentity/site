@@ -1,9 +1,9 @@
 ---
 title: "Beating pacman with search"
 category: "Tech"
-date: "2024-11-13"
+date: "2024-12-8"
 coverImage: "/img/pacman/cover.png"
-description: "I'm terrible at video games. Can an exploration into AI planning and search bump my stats? In this project, I attempt to build a halfway decent pacman capture the flag player with python and a few AI planning tricks."
+description: "I'm terrible at video games. Can an exploration into AI planning and search bump my stats? In this project, I attempt to build a halfway decent pacman capture the flag player with python and a few algorithmic tricks."
 isNew: "False"
 ---
 
@@ -11,7 +11,7 @@ I've never been any good at video games. Quick reflexes, precise inputs and tras
 
 ### Pacman Capture-the-Flag
 
-The bot will play a multiplayer, capture-the-flag variant of pacman, where agents control both pacman and ghosts in coordinated team-based strategies. Your team will try to eat the food on the far side of the map, while defending the food on your home side.
+The bot will play a multiplayer, capture-the-flag variant of pacman, where agents control both pacman and ghosts in coordinated team-based strategies. Your team will try to retrieve food from the far side of the map, while defending the food on your home side.
 
 ![Intro Image](/img/pacman/intro.png)
 
@@ -34,11 +34,11 @@ Lets illustrate this using an example, with a search depth of 1. For the moment,
 
 ![Example 1a](/img/pacman/example-1a.png)
 
-In the starting state, the pacman agent has only one option: go right.
+In the starting state, there is only one possible action: go right.
 
 ![Example 1b](/img/pacman/example-1b.png)
 
-From here, the search algorithm (at depth 1) has two future states to explore, resulting from the actions left and right. The state after going right is given a higher score, meaning the agent will move right again and collect the food.
+From here, the search algorithm (at depth 1) has two future states to explore, resulting from the actions left and right. The state after going right is given a higher score, so the agent moves right again.
 
 ![Example 1c](/img/pacman/example-1c.png)
 
@@ -63,13 +63,13 @@ Fortunately, these are implemented by the `getLegalActions` and `generateSuccess
 
 ### Evaluation
 
-Before we get going with search, lets take a moment to construct a basic evaluation function. This function should take in a game state and return some number indicating the desirability of that state. These outputs will then be used as node values when searching through our graph. We'll start with a purely offensive agent, and worry about defense later. For a simple evaluation function, we'll work off the following requirements:
+Before we get going with search, lets take a moment to construct a basic evaluation function. This function should take in a game state and return some number indicating the desirability of that state. These outputs will then be used as node values when searching through our graph. We'll start with a purely offensive agent and work off the following requirements:
 
-- When the agent is in its home territory, the evalutation should reward states that are closer to enemy territory
+- When the agent is in its home territory, the evaluation should reward states that are closer to enemy territory
 - When the agent isn't carrying any food, or food is closer than home territory, the evaluation should reward states where the agent is closer to food.
 - When the agent is carrying some food and the boundary is closer than the nearest food, the evaluation should reward states that are closer to home territory.
 
-Because this evaluation function will be used as part of a search function, we also need to account for the search depth and make sure that we are using distances from the root state to switch between our evaluation formulas.
+Because this evaluation function will be used as part of a search function, we also need to account for the search depth and make sure that we are using distances from the root state (rather than the search state) where appropriate.
 
 Here's a simplified version of this in python.
 
@@ -92,12 +92,12 @@ This also indirectly incentivises avoiding capture, as the agent is sent back to
 
 With an evaluation function in place, we can now devise a search algorithm to help our agent plan its actions. I used a [minimax](https://en.wikipedia.org/wiki/Minimax) algorithm augmented with [Upper Confidence Bound for Trees](https://www.chessprogramming.org/UCT) (UCT) to handle decision-making under uncertainty. Here's how it works in the context of Pacman Capture-the-Flag:
 
-- Minimax explores possible moves for both our agent (the "maximizing player") and the opponent (the "minimizing player"). It assumes that the opponent will always act to minimize our agent's score while our agent tries to maximize it. The search alternates between these perspectives at each depth. If you're curious, I made a [seperate post](https://henlightened.com/minimax) about this.
-- Since exploring every possible move at deeper levels can quickly become computationally expensive, UCB provides a way to balance exploration (searching more paths, even less promising ones) with exploitation (focusing on known high-evaluation paths).
+- Minimax explores possible moves for both our team (the "maximizing players") and the opponent team (the "minimizing players"). It assumes that opponents will always act to minimize our team's score while we try to maximize it. The search alternates between these perspectives at each depth. If you're curious, I made a [seperate post](https://henlightened.com/minimax) about this.
+- Since exploring every possible move can quickly become computationally expensive, UCB provides a way to balance exploration (searching more paths, including less promising ones) with exploitation (focusing on known, high-evaluation paths).
 
 To speed up the search, we also avoid paths where the agent revisits locations and use [alpha-beta pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) to discard paths that definitely aren't worth exploring further.
 
-Here's a high-level implementation of the search function in Python. This was generalised to work with n maximising players and n minimising players in the final implementation:
+Here's a simplified, 2-player version of the search function in Python. This was generalised to work with n maximising players and n minimising players in the final implementation:
 
 ```python
 def minimax_with_ucb(state, depth, is_maximizing_player, ucb_constant=1.41):
@@ -127,11 +127,11 @@ def minimax_with_ucb(state, depth, is_maximizing_player, ucb_constant=1.41):
         return worst_value
 ```
 
-UCB helps to handle the search space explosion, while minimax allows the agent to execute precise, no-risk move sequences. A similar defensive version of the bot was also developed.
+UCB helps to handle the search space explosion, while minimax allows the agent to execute precise, no-risk move sequences. A defensive version of the bot was also developed using the same search algorithm with a defense-focused evaluation function.
 
 ### Testing the bot
 
-In its [final implementation](https://github.com/COMP90054-2023s2/a3-team_39), the bot was able to evaluate tens of thousands of game states per second and searched up to 30 moves ahead on each turn (depending on how open the map was). The bot took the most efficient paths to find food, and often surprised me with clever interceptions and close escapes. Had I done it? Was there a light at the end of the tunnel for my gaming performance?
+In its [final implementation](https://github.com/COMP90054-2023s2/a3-team_39), the bot was able to evaluate tens of thousands of game states per second and searched up to 30 moves ahead on each turn (depending on how open the map was). The bot took the most efficient paths to find food, and often surprised me with clever interceptions and close escapes. Had I done it? Was there light at the end of the tunnel for my gaming career?
 
 Unfortunately, the answer remains a resounding no. Although the bot could draw on orders of magnitude more compute than my own biological hardware, it was fundamentally limited by (1) its limited long-term planning and (2) its inability to learn.
 
@@ -140,8 +140,8 @@ Unfortunately, the answer remains a resounding no. Although the bot could draw o
 
 ### Hope?
 
-One way to address both of these issues would be to leverage Reinforcement Learning (RL). Unlike a handcrafted evaluation function like the one above, which relies on predefined heuristics, RL enables agents to learn complex evaluation functions directly from experience. This approach was used to great success by Google DeepMind in their groundbreaking work on [AlphaZero](https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/), which dominated existing techniques in games like Chess and Go.
+One way to address both of these issues would be to leverage Reinforcement Learning (RL). Unlike a handcrafted evaluation function like the one above, which relies on predefined heuristics, RL enables agents to learn complex evaluation functions simply by playing millions of games against itself. This approach was used to great success by Google DeepMind in their groundbreaking work on [AlphaZero](https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/), which dominated existing techniques in games like Chess and Go.
 
-An RL-trained agent would combine search with a neural network that learns to evaluate game states and predict the most promising actions. By training over millions of games, the neural network implicitly learns to value long-term outcomes over immediate gains. For example, AlphaZero developed an uncanny ability to "sacrifice" material in chess to gain positional advantages that paid off many moves later. Through self-play, RL agents continuously also learn to counter diverse strategies. This would allow a Pacman bot to recognize and respond to patterns in an opponent's playstyle, making it harder to exploit.
+An RL-trained agent would combine search with a neural network that learns to evaluate game states and predict the most promising actions. Through extensive training, the network implicitly learns to value long-term outcomes over immediate gains. For example, AlphaZero developed an uncanny ability to "sacrifice" material in chess to gain positional advantages that paid off many moves later. Through self-play, RL agents also learn to counter diverse strategies. This could allow a Pacman bot to recognize and respond to patterns in an opponent's playstyle, making it harder to exploit.
 
-Maybe I'll get around to building this some day. I'll have to learn to live with my sub-par gaming abilities for now, but I learned enough along the way that this didn't feel like a complete waste of time :)
+Maybe I'll get around to building this some day. For now I'll have to make do with my sub-par gaming abilities, and take comfort in the discovery that basic proficiency in simple games is more impressive than it may seem.
