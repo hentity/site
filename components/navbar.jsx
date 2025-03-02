@@ -139,13 +139,6 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <Link
-            href="/about"
-            onClick={() => setIsMenuOpen(false)}
-            className="p-1 pt-4 border-t-2 font-bold w-full font-sans text-2xl focus:bg-postBackgroundHover"
-          >
-            About
-          </Link>
         </div>
       )}
     </>
