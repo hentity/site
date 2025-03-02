@@ -80,12 +80,12 @@ export default function About() {
             </div>
           </div>
           <div className="lg:hidden mt-4 font-sans font-bold text-4xl mb-4 flex items-center text-textPrimary">
-            <span>Who's talking?</span>
+            <span>{"Who's talking?"}</span>
           </div>
           <div className="font-sans text-textMuted">
-            I'm Henry, a 21-year old software engineering student living in
-            Melbourne, Australia. If by some miracle you are not my mum or close
-            friend and would like to chat, send an email to{" "}
+            {
+              "I'm Henry, a 21-year old software engineering student living in Melbourne, Australia. If by some miracle you are not my mum or close friend and would like to chat, send an email to "
+            }
             <div className="relative inline-block group">
               <span
                 className="cursor-pointer hover:font-bold underline "
