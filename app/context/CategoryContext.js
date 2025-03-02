@@ -8,11 +8,11 @@ const CategoryColoursContext = createContext();
 const categoryColours1 = {
   All: "#000000",
   Tech: "#5F0F40", 
-  Books: "#9A031E",
-  Music: "#E36414", 
+  Biology: "#9A031E",
+  Miscellaneous: "#E36414", 
   // Media: "#0F4C5C",
-  Fitness: "#0A590E", 
-  Random: "#e14d61",
+  // Fitness: "#0A590E", 
+  // Random: "#e14d61",
 };
 
 const categoryColours2 = {
@@ -28,9 +28,9 @@ const categoryColours2 = {
 const retroCategoryColours = {
   All: "#242427",
   Tech: "#6a87a5", 
-  Music: "#7d9f86",
-  History: "#e69265",
-  Projects: "#c76e7a", 
+  Biology: "#7d9f86",
+  Miscellaneous: "#e69265",
+  // Projects: "#c76e7a", 
   // Movies: "#895570",
   // Other: "#e14d61",
 };

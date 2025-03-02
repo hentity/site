@@ -1,13 +1,13 @@
 ---
-title: "Antibiotics: Medical marvel or crumbling stopgap?"
-category: "Tech"
-date: "2025-02-02"
-coverImage: "/img/antibiotics/hydra.png"
+title: "Antibiotics: Medical marvel or band-aid fix?"
+category: "Biology"
+date: "2025-01-15"
+coverImage: "/img/antibiotics/bandaid.png"
 description: "Imagine a world where a small cut could mean a death sentence. This was life before antibiotics. Today, we take these tiny pills for granted, but their discovery was nothing short of a medical revolution. Let’s dive into the fascinating history of antibiotics, how they work their magic, and the looming challenge of keeping them effective."
 isNew: "False"
 ---
 
-Imagine a world where a small cut could mean a death sentence. A world where childbirth, surgeries or even a sore throat carried a real risk of fatal infection. This was life before antibiotics. Today, we take these tiny pills for granted, but their discovery was nothing short of a medical revolution. Nearly a century later, we’re facing a growing problem: antibiotic resistance threatens to drag us back to that not-so-distant past. Let’s dive into the fascinating history of antibiotics, how they work their magic, and the looming challenge of keeping them effective.
+_Imagine a world where a small cut could mean a death sentence. A world where childbirth, surgeries or even a sore throat carried a real risk of fatal infection. This was life before antibiotics. Today, we take these tiny pills for granted, but their discovery was nothing short of a medical revolution. Nearly a century later, we’re facing a growing problem: antibiotic resistance threatens to drag us back to that not-so-distant past. Let’s dive into the fascinating history of antibiotics, how they work their magic, and the looming challenge of keeping them effective._
 
 ### Mouldy bread and a forgotten lab dish: Antibiotics throughout history
 
@@ -46,5 +46,7 @@ And resistance doesn’t just stop with one antibiotic. Bacteria that survive an
 ### Battling the Hydra
 
 Antibiotic resistance isn’t a distant problem — it’s already here. Hospitals are facing rising cases of infections that were once easy to treat but now require last-resort drugs. In 2019 the [WHO estimated](https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance) that antimicrobial resistance was directly responsible for 1.27 million deaths worldwide. Researchers are scrambling to develop new antibiotics, but evolution is hot on their tails.
+
+![Hydra](/img/antibiotics/hydra.png)
 
 Still, we’re not powerless. Responsible antibiotic use, better hygiene, and investment in new treatments can slow the spread of resistance. The fight against bacterial infections isn’t over, but if we treat antibiotics like the precious resource they are, we may be able to keep the Hydra at bay.

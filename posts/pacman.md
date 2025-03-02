@@ -44,7 +44,7 @@ From here, the search algorithm (at depth 1) has two future states to explore, r
 
 Note that from here, the agent cannot return to the previous states as the food has been removed.
 
-### Getting graphic
+### Look at this graph
 
 If you've used [graphs](<https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)>) before (the discrete math variety), you might see how they could be useful here. We can represent each game state as a node in a [directed graph](https://en.wikipedia.org/wiki/Directed_graph), using the evaluation at each node to conduct a search through [state space](<https://en.wikipedia.org/wiki/State_space_(computer_science)>), finding the most desirable states and the shortest sequence of actions to get there.
 

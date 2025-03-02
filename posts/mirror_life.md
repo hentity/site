@@ -1,13 +1,13 @@
 ---
 title: "Mirror Life: Biology's Poisoned Chalice"
-category: "Tech"
-date: "2025-02-01"
+category: "Biology"
+date: "2025-02-8"
 coverImage: "/img/mirror_life/mirror_life.png"
 description: "What if scientists created a new form of life—one that our immune systems couldn’t detect, antibiotics couldn’t kill, and nature couldn’t control? It sounds like science fiction, but researchers are warning that 'mirror life' — life built from the opposite-handed molecules to our own — could be one of the greatest biosecurity threats ever conceived."
 isNew: "False"
 ---
 
-What if scientists created a new form of life—one that our immune systems couldn’t detect, antibiotics couldn’t kill, and nature couldn’t control? It sounds like science fiction, but researchers are warning that 'mirror life' — life built from the opposite-handed molecules to our own — could be one of the greatest biosecurity threats ever conceived.
+_What if scientists created a new form of life—one that our immune systems couldn’t detect, antibiotics couldn’t kill, and nature couldn’t control? It sounds like science fiction, but researchers are warning that 'mirror life' — life built from the opposite-handed molecules to our own — could be one of the greatest biosecurity threats ever conceived._
 
 A recent paper published in _Science_ lays out the risks in stark detail. It warns that while mirror life might have exciting applications, it could also become an unstoppable pathogen or a biosecurity disaster waiting to happen. Before we rush to create it, we need to understand why it might be the ultimate scientific Pandora’s box.
 
