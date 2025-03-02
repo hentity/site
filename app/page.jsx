@@ -1,79 +1,126 @@
+"use client";
+
 import Link from "next/link";
-import { getSortedPostsData } from "@/lib/posts";
 import "@/app/globals.css";
 import Image from "next/image";
+import PostCard from "components/postCard";
+import HeroPostCard from "components/heroPostCard";
+import { useState, useEffect } from "react";
+import { fetchSortedPostsData } from "@/lib/clientPosts";
+import { useCategoryColours } from "./context/CategoryContext";
+import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
 
-export default async function Home({ params }) {
-  const allPostsData = await getSortedPostsData();
-  const heroPost = allPostsData[0];
-  const morePosts = allPostsData.slice(1, 4);
+export default function Home() {
+  const [allPostsData, setAllPostsData] = useState([]);
+  const [heroPost, setHeroPost] = useState(null);
+  const [otherPosts, setOtherPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const categoryColours = useCategoryColours();
+
+  useEffect(() => {
+    setIsLoading(true);
+    setAllPostsData([]);
+    setPage(1);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const data = await fetchSortedPostsData(page, selectedCategory);
+      setAllPostsData((prevData) => {
+        return page === 1 ? data : [...prevData, ...data];
+      });
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [page, selectedCategory]);
+
+  useEffect(() => {
+    if (!isLoading && allPostsData.length === 0) {
+      setHeroPost(null);
+      setOtherPosts([]);
+    } else {
+      if (allPostsData.length > 0) {
+        setHeroPost(allPostsData[0]);
+        setOtherPosts(allPostsData.slice(1));
+      }
+    }
+  }, [allPostsData, isLoading]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight
+      ) {
+        return;
+      }
+      setPage((prevPage) => prevPage + 1);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoading]);
 
   return (
-    <div className="container mx-auto px-4 md:px-0 mt-10">
-      {/* Hero Post */}
-      <div className="flex">
-        <div className="w-2/3 mr-8">
-          <section className="mb-16">
-            <h2 className="mb-4 text-3xl">{heroPost.title}</h2>
-            <div className="mb-4 text-gray-600">{heroPost.date}</div>
-            <div className="mb-8">
-              <Image
-                src={heroPost.coverImage}
-                alt={heroPost.title}
-                width={1920}
-                height={1080}
-              />
-            </div>
-            <Link
-              href={`/posts/${heroPost.id}`}
-              className="text-blue-600 hover:underline"
-            >
-              Read more
-            </Link>
-          </section>
-        </div>
-
-        {/* More Posts */}
-        <div className="w-1/3">
-          <section className="flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 md:mr-8">
-              <h2 className="text-2xl mb-8">More Posts</h2>
-              <ul className="space-y-4">
-                {morePosts.map(({ id, date, title, coverImage }) => (
-                  <li key={id} className="border-b pb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-32 h-20">
-                        <Image
-                          src={coverImage}
-                          alt={title}
-                          width={1920}
-                          height={1080}
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-xl">
-                          <Link
-                            href={`/posts/${id}`}
-                            className="text-blue-600 hover:underline"
-                          >
-                            {title}
-                          </Link>
-                        </h3>
-                        <p className="text-gray-600">{date}</p>
-                      </div>
+    <>
+      <div className="px-4 md:px-8">
+        {heroPost && (
+          <div className="max-w-screen-2xl mx-auto w-full p-6 pt-2">
+            <HeroPostCard
+              id={heroPost.id}
+              date={heroPost.date}
+              category={heroPost.category}
+              title={heroPost.title}
+              coverImage={heroPost.coverImage}
+              description={heroPost.description}
+              isNew={heroPost.isNew}
+            />
+          </div>
+        )}
+        {otherPosts.length > 0 && (
+          <div className="mx-auto max-w-screen-2xl bg-boardBackground md:border-t-2 md:border-borders">
+            <div className="w-full flex flex-wrap">
+              {otherPosts.length == 0 && selectedCategory != "All" ? (
+                <div className="absolute text-textPrimary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans text-xl"></div>
+              ) : (
+                otherPosts.map(
+                  ({
+                    id,
+                    date,
+                    title,
+                    category,
+                    coverImage,
+                    description,
+                    isNew,
+                  }) => (
+                    <div key={id} className="w-full lg:w-1/2 p-6">
+                      <PostCard
+                        id={id}
+                        date={date}
+                        category={category}
+                        title={title}
+                        coverImage={coverImage}
+                        description={description}
+                        isNew={isNew}
+                      />
                     </div>
-                  </li>
-                ))}
-              </ul>
+                  )
+                )
+              )}
             </div>
-            <div className="w-full md:w-1/2 mt-8 md:mt-0">
-              <Link href="/archive" className="text-blue-600 hover:underline">
-                See More
-              </Link>
-            </div>
-          </section>
-        </div>
+          </div>
+        )}
+        {!isLoading && allPostsData.length == 0 && (
+          <div className="w-fit mx-auto font-sans text-textPrimary font-semibold text-xl">
+            No posts here... yet.
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }

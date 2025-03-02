@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-    @apply bg-white; 
+    @apply bg-background; 
   }
+
+/* .hljs {
+  @apply bg-codeBackground
+} */
