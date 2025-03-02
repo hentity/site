@@ -1,7 +1,7 @@
 ---
 title: "Beating pacman with search"
 category: "Tech"
-date: "2024-12-8"
+date: "2024-12-08"
 coverImage: "/img/pacman/cover.png"
 description: "I'm terrible at video games. Can an exploration into AI planning and search bump my stats? In this project, I attempt to build a halfway decent pacman capture the flag player with python and a few algorithmic tricks."
 isNew: "False"

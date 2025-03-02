@@ -1,7 +1,7 @@
 ---
 title: "Mirror Life: Biology's Poisoned Chalice"
 category: "Biology"
-date: "2025-02-8"
+date: "2025-02-08"
 coverImage: "/img/mirror_life/mirror_life.png"
 description: "What if scientists created a new form of life—one that our immune systems couldn’t detect, antibiotics couldn’t kill, and nature couldn’t control? It sounds like science fiction, but researchers are warning that 'mirror life' — life built from the opposite-handed molecules to our own — could be one of the greatest biosecurity threats ever conceived."
 isNew: "False"
