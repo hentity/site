@@ -9,7 +9,7 @@ isNew: "False"
 
 _Ever shown up to the beach expecting perfect conditions, only to find mushy closeouts or barely a ripple? Understanding how wind, swell and tides shape waves is key to scoring better surf, but can be tricky to pick up for new surfers. This article hopes to demystify the process, helping you read forecasts, predict local conditions and time your sessions for the best waves._
 
-**Disclaimer:** The following is thoroughly unscientiffic and mostly based on surfing wisdom extracted from the author's dad over many years.
+**Disclaimer:** The following is thoroughly unscientific and mostly based on surfing wisdom extracted from the author's dad over many years.
 
 ### What is a wave?
 
