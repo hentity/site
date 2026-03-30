@@ -4,9 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCategoryColours } from "@/app/context/CategoryContext";
-import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 export default function HeroPostCard({
   id,
@@ -16,9 +13,10 @@ export default function HeroPostCard({
   coverImage,
   description,
   isNew,
+  series,
+  seriesPart,
 }) {
   const categoryColours = useCategoryColours();
-  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
   return (
     <>
@@ -30,11 +28,11 @@ export default function HeroPostCard({
         <div className="w-full lg:w-1/2 p-2">
           <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
             <Image
-              className="object-cover rounded-custom absolute inset-0 w-full h-full"
+              className="object-contain rounded-custom absolute inset-0 w-full h-full"
               src={coverImage}
               alt={title}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
             />
           </div>
         </div>
@@ -57,6 +55,11 @@ export default function HeroPostCard({
           <p className="max-lg:hidden text-xl md:px-6 font-serif text-textPrimary mt-2">
             {description}
           </p>
+          {series && (
+            <div className="text-textMuted text-sm font-sans font-semibold md:px-6 mt-1">
+              {series} · Part {seriesPart}
+            </div>
+          )}
           <div className="max-lg:hidden md:mx-6 my-2 w-fit relative font-sans font-bold text-lg hover:underline">
             Read more
           </div>
@@ -69,6 +72,11 @@ export default function HeroPostCard({
             {category}
           </div> */}
           <div className="flex h-full items-end self-end">
+            {isNew == "True" && (
+              <div className="rounded-custom py-0.5 px-4 m-3 font-sans ring-2 ring-inset ring-borders font-bold text-xl">
+                New
+              </div>
+            )}
             <div className="text-textMuted text-xl h-fit font-semibold font-light font-sans">
               <div
                 style={{
@@ -81,11 +89,6 @@ export default function HeroPostCard({
             </div>
           </div>
         </div>
-        {isNew == "True" && (
-          <div className="absolute rounded-custom py-0.5 px-4 font-sans border-2 border-borders font-bold text-xl bottom-4 right-4 ">
-            New
-          </div>
-        )}
       </Link>
     </>
   );

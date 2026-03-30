@@ -1,4 +1,4 @@
-import { getAllPostIds, getPostData } from "@/lib/serverPosts";
+import { getPostData } from "@/lib/serverPosts";
 import "@/app/globals.css";
 import Image from "next/image";
 import "highlight.js/styles/github.css";
@@ -34,6 +34,11 @@ export default async function Post({ params }) {
             })
             .replace(/\//g, " ")}
         </div>
+        {postData.series && (
+          <div className="font-sans text-textMuted font-semibold">
+            {postData.series} · Part {postData.seriesPart}
+          </div>
+        )}
 
         <h1 className="font-sans">{postData.title}</h1>
 

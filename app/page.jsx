@@ -79,6 +79,9 @@ export default function Home() {
               coverImage={heroPost.coverImage}
               description={heroPost.description}
               isNew={heroPost.isNew}
+              series={heroPost.series}
+              seriesPart={heroPost.seriesPart}
+              seriesTotal={heroPost.seriesTotal}
             />
           </div>
         )}
@@ -97,6 +100,9 @@ export default function Home() {
                     coverImage,
                     description,
                     isNew,
+                    series,
+                    seriesPart,
+                    seriesTotal,
                   }) => (
                     <div key={id} className="w-full lg:w-1/2 p-6">
                       <PostCard
@@ -107,6 +113,9 @@ export default function Home() {
                         coverImage={coverImage}
                         description={description}
                         isNew={isNew}
+                        series={series}
+                        seriesPart={seriesPart}
+                        seriesTotal={seriesTotal}
                       />
                     </div>
                   )

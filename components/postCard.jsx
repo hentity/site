@@ -4,9 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCategoryColours } from "@/app/context/CategoryContext";
-import { useSelectedCategory } from "@/app/context/SelectedCategoryContext";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 export default function PostCard({
   id,
@@ -14,8 +11,8 @@ export default function PostCard({
   title,
   category,
   coverImage,
-  description,
-  isNew,
+  series,
+  seriesPart,
 }) {
   const categoryColours = useCategoryColours();
 
@@ -31,11 +28,11 @@ export default function PostCard({
         <div className="w-full md:w-5/12 lg:w-1/2 p-2">
           <div className="relative w-full" style={{ paddingTop: "66.66%" }}>
             <Image
-              className="object-cover rounded-custom absolute inset-0 w-full h-full"
+              className="object-contain rounded-custom absolute inset-0 w-full h-full"
               src={coverImage}
               alt={title}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
             />
           </div>
         </div>
@@ -54,29 +51,19 @@ export default function PostCard({
               })
               .replace(/\//g, " ")}
           </div>
-          {/* <div className="flex h-full py-1">
+          {series && (
+            <div className="text-textMuted text-sm font-sans font-semibold mt-1 px-0.5">
+              {series} · Part {seriesPart}
+            </div>
+          )}
+          <div className="flex h-full items-end self-end">
             <div
               style={{
                 backgroundColor: categoryColours[category],
               }}
-              className="px-2 my-1 rounded-custom h-fit w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
+              className="px-2 m-2 rounded-custom w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
             >
               {category}
-            </div>
-          </div> */}
-          {/* <p className="max-2xl:hidden text-lg font-serif mt-2">
-            {description}
-          </p> */}
-          <div className="flex h-full items-end self-end">
-            <div className="text-textMuted text-md h-fit font-semibold font-light font-sans">
-              <div
-                style={{
-                  backgroundColor: categoryColours[category],
-                }}
-                className="px-2 m-2 rounded-custom w-fit py-0.5 font-sans font-semibold text-textCategoryLabel"
-              >
-                {category}
-              </div>
             </div>
           </div>
         </div>
