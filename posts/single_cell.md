@@ -8,7 +8,7 @@ description: "The second post in a series documenting an attempt to teach myself
 isNew: "True"
 ---
 
-In my [first post](../posts/2026-03-31-bioinformatics-from-scratch-part-1.md) I wrote about my plan to explore each of the main bioinformatics subfields before deciding where to focus. Single-cell genomics is the first one I've dug into properly. I spent a few weeks reading papers, going through analysis workflows, and trying to figure out what the field actually involves. This post is my amateur attempt to summarise what I found.
+In my [first post](../posts/2026-03-31-bioinformatics-from-scratch-part-1.md) I wrote about my plan to explore each of the main bioinformatics subfields before deciding where to focus. Single-cell genomics is the first one I've dug into properly. I spent a week reading papers, going through analysis workflows, and trying to figure out what the field actually involves. This post is my amateur attempt to summarise what I found.
 
 ![Single Cell](/img/single_cell/single_cell.png)
 
