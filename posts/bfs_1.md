@@ -5,7 +5,7 @@ category: "Biology"
 date: "2026-03-30"
 coverImage: "/img/bfs_1/cover.png"
 description: "The first post in a series documenting an attempt to teach myself bioinformatics in my spare time. I cover why the field appeals to me, what I'm hoping to get out of it, and the plan: five weeks across five subfields before committing to one."
-isNew: "True"
+isNew: "False"
 ---
 
 This is the first post in what will hopefully become a series documenting my attempt to teach myself bioinformatics in my spare time. I'm a 9-to-5 software developer in my mid-twenties with relatively few responsibilities, and thought this might be a good way to spend my free time before life gets too busy.
@@ -34,7 +34,7 @@ Finally, the applications aren't abstract. Better models of disease, better drug
 
 [Bioinformatics](https://en.wikipedia.org/wiki/Bioinformatics) is a big field. There are subfields within it that have their own distinct biological context, their own tooling, their own research communities, their own datasets. Picking it up as an outsider without narrowing your focus is probably a good way to spread yourself thin and not really get anywhere.
 
-So the first thing I want to do is pick a subfield. I'll spend a week on each of the five areas below. If you work in these fields, please forgive any butchered descriptions. 
+So the first thing I want to do is pick a subfield. I'll explore each of the five areas below and write up what I find before making a decision. If you work in these fields, please forgive any butchered descriptions.
 
 - [Single-cell genomics](https://en.wikipedia.org/wiki/Single-cell_sequencing): measuring gene activity at the resolution of individual cells, rather than averaging across a whole tissue
 - [Spatial transcriptomics](https://en.wikipedia.org/wiki/Spatial_transcriptomics): like single-cell genomics, but with the physical location of each cell preserved, so you can ask not just what genes are active but where in a tissue
@@ -42,9 +42,9 @@ So the first thing I want to do is pick a subfield. I'll spend a week on each of
 - [Genomic variant interpretation](https://en.wikipedia.org/wiki/Variant_of_uncertain_significance): identifying differences in DNA sequences between individuals and figuring out what those differences mean, particularly in the context of disease
 - [Protein function prediction](https://en.wikipedia.org/wiki/Protein_function_prediction): predicting what a protein does from its sequence or structure, a field that has seen a lot of ML activity recently, mostly in the wake of AlphaFold
 
-The goal for each week is to get a reasonable sense of what the field is actually about. I'd like to get a grasp of its history, the landmark papers, the current state of research, the kinds of problems people are working on. I'll be reading papers, trying to actually understand them (starting from the abstract and working outwards as needed), and hopefully doing some hands-on analysis with public datasets where I can.
+For each subfield I'd like to get a reasonable sense of what it's actually about — its history, the landmark papers, the current state of research, the kinds of problems people are working on. I'll be reading papers, trying to actually understand them (starting from the abstract and working outwards as needed), and hopefully doing some hands-on analysis with public datasets where I can. Each subfield will get its own post.
 
-At the end of the five weeks I'll pick one and commit to it for a while. That whole process will be the subject of the next post in this series.
+Once I've been through all five I'll pick one to commit to, and that decision will be its own post.
 
 ---
 
