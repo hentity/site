@@ -26,6 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <head>
         <meta name="description" content="Description" />
+        <link rel="icon" href="/img/henlightened.png" type="image/png" />
       </head>
       <body className="">
         <SelectedCategoryProvider>

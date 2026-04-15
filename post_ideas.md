@@ -1,0 +1,7 @@
+- making my own font
+- why you should learn the bansuri
+- series on learning to play what I hear in my head
+- audio analysis to detect frequencies for fretty
+- post about fretty
+- post about debate social media app
+- saganaki recipe
