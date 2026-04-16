@@ -4,8 +4,8 @@ import "./globals.css";
 import NavBar from "components/navbar";
 import { CategoryColoursProvider } from "@/app/context/CategoryContext";
 import { SelectedCategoryProvider } from "@/app/context/SelectedCategoryContext";
-import { useState } from "react";
 import { Mulish, EB_Garamond } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 const sans = Mulish({
   subsets: ["latin"],
@@ -20,7 +20,8 @@ const serif = EB_Garamond({
 });
 
 export default function RootLayout({ children }) {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const pathname = usePathname();
+  const showNav = !pathname.startsWith("/pojagi");
 
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
       <body className="">
         <SelectedCategoryProvider>
           <CategoryColoursProvider>
-            <NavBar />
+            {showNav && <NavBar />}
             {children}
           </CategoryColoursProvider>
         </SelectedCategoryProvider>

@@ -43,10 +43,10 @@ When exposed to antibiotics, most bacteria are wiped out, but a few may survive 
 
 And resistance doesn’t just stop with one antibiotic. Bacteria that survive an initial treatment often return stronger, capable of withstanding [multiple drugs](https://en.wikipedia.org/wiki/Multiple_drug_resistance). Like the mythical Hydra, each attempt to fight an infection can lead to something more formidable in its place.
 
-![Hydra](/img/antibiotics/hydra.png)
-
 ### Battling the Hydra
 
 Antibiotic resistance isn’t a distant problem. In fact, it’s already here. Hospitals are facing rising cases of infections that were once easy to treat but now require last-resort drugs. In 2019 the [WHO estimated](https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance) that antimicrobial resistance was directly responsible for 1.27 million deaths worldwide. Researchers are scrambling to develop new antibiotics, but evolution is hot on their tails.
 
 Still, we’re not powerless. Responsible antibiotic use, better hygiene, and investment in new treatments can slow the spread of resistance. The fight against bacterial infections isn’t over, but if we treat antibiotics like the precious resource they are, we may be able to keep the Hydra at bay.
+
+![Hydra](/img/antibiotics/hydra.png)
