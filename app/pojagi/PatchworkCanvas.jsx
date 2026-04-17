@@ -119,8 +119,27 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
   const [showMeasurements, setShowMeasurements] = useState(false);
   const [autoColorKeys, setAutoColorKeys] = useState(new Set([1, 2, 3, 4, 5, 6]));
   const [palette, setPalette] = useState(initialPalette ?? { ...COLORS });
+  const [history, setHistory] = useState([]);
 
-  stateRef.current = { hoveredId, selectedIds, panels };
+  stateRef.current = { hoveredId, selectedIds, panels, palette };
+
+  const pushHistory = useCallback(() => {
+    const { panels, palette } = stateRef.current;
+    setHistory((prev) => {
+      const next = [...prev, { panels, palette }];
+      return next.length > 50 ? next.slice(1) : next;
+    });
+  }, []);
+
+  const undo = useCallback(() => {
+    setHistory((prev) => {
+      if (prev.length === 0) return prev;
+      const snapshot = prev[prev.length - 1];
+      setPanels(snapshot.panels);
+      setPalette(snapshot.palette);
+      return prev.slice(0, -1);
+    });
+  }, []);
 
   // ResizeObserver
   useEffect(() => {
@@ -207,6 +226,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
   const startSplit = useCallback((panelId, direction) => {
     const panel = stateRef.current.panels.find((p) => p.id === panelId);
     if (!panel) return;
+    pushHistory();
     const { mmX, mmY } = mouseMmRef.current;
     const position =
       direction === 'H'
@@ -224,16 +244,18 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
           ];
     setSelectedIds(new Set());
     setPanels((prev) => prev.filter((p) => p.id !== panelId).concat(newPanels));
-  }, []);
+  }, [pushHistory]);
 
   const handleMerge = useCallback(() => {
     const { selectedIds, panels } = stateRef.current;
     const selected = panels.filter((p) => selectedIds.has(p.id));
     if (!canMerge(selected)) {
+      // don't push history on invalid merge
       setMergeError(true);
       setTimeout(() => setMergeError(false), 600);
       return;
     }
+    pushHistory();
     const minX = Math.min(...selected.map((p) => p.x));
     const minY = Math.min(...selected.map((p) => p.y));
     const maxX = Math.max(...selected.map((p) => p.x + p.width));
@@ -244,13 +266,14 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
       })
     );
     setSelectedIds(new Set());
-  }, []);
+  }, [pushHistory]);
 
   const assignColor = useCallback((colorNum) => {
     const { hoveredId } = stateRef.current;
     if (!hoveredId) return;
+    pushHistory();
     setPanels((prev) => prev.map((p) => (p.id === hoveredId ? { ...p, color: colorNum } : p)));
-  }, []);
+  }, [pushHistory]);
 
   const saveDesign = useCallback(() => {
     const { panels } = stateRef.current;
@@ -294,6 +317,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
 
   useEffect(() => {
     const handler = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); undo(); return; }
       if (e.target.tagName === 'INPUT') return;
       const { hoveredId, selectedIds } = stateRef.current;
       if ((e.key === 'h' || e.key === 'H') && hoveredId) startSplit(hoveredId, 'H');
@@ -303,7 +327,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [startSplit, handleMerge, assignColor]);
+  }, [startSplit, handleMerge, assignColor, undo]);
 
   // Global mouseup — end edge drag
   useEffect(() => {
@@ -366,6 +390,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
       const edge = findNearestEdge(mmX, mmY, panels, curtainW, curtainH, thresholdMm);
       if (edge) {
         e.preventDefault();
+        pushHistory();
         edgeDragRef.current = {
           type: edge.type,
           currentPosition: edge.position,
@@ -375,7 +400,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
         };
       }
     },
-    [getSvgCoords, scale, curtainW, curtainH, offsetX, offsetY]
+    [getSvgCoords, scale, curtainW, curtainH, offsetX, offsetY, pushHistory]
   );
 
   const handleSvgClick = useCallback(
@@ -440,7 +465,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
                 <label
                   title={`Edit colour ${k}`}
                   className="absolute inset-0 cursor-pointer opacity-0"
-                  onMouseDown={(e) => e.stopPropagation()}
+                  onMouseDown={(e) => { e.stopPropagation(); pushHistory(); }}
                   onClick={(e) => { e.stopPropagation(); e.currentTarget.nextSibling.click(); }}
                 />
                 <input
@@ -474,7 +499,7 @@ export default function PatchworkCanvas({ dimensions, initialPanels, initialPale
             );
           })}
           <button
-            onClick={() => setPanels((prev) => graphColor(prev, [...autoColorKeys]))}
+            onClick={() => { pushHistory(); setPanels((prev) => graphColor(prev, [...autoColorKeys])); }}
             disabled={autoColorKeys.size === 0}
             className="font-sans text-xs font-semibold border border-gray-300 px-2 py-1 hover:border-black transition-colors ml-1 disabled:opacity-30 disabled:cursor-not-allowed"
           >
